@@ -1,0 +1,72 @@
+--------------- Rebuild Started: 03/10/2015 11:30:10 Project: LAB_ONE, Configuration: ARM GCC 4.8.4 Debug ---------------
+Deleting file ".\ARM_GCC_484\Debug\main.o"
+Deleting file ".\ARM_GCC_484\Debug\cyfitter_cfg.o"
+Deleting file ".\ARM_GCC_484\Debug\cybootloader.o"
+Deleting file ".\ARM_GCC_484\Debug\cymetadata.o"
+Deleting file ".\ARM_GCC_484\Debug\Bootloadable.o"
+Deleting file ".\ARM_GCC_484\Debug\P1_6.o"
+Deleting file ".\ARM_GCC_484\Debug\Cm0Start.o"
+Deleting file ".\ARM_GCC_484\Debug\CyBootAsmGnu.o"
+Deleting file ".\ARM_GCC_484\Debug\CyFlash.o"
+Deleting file ".\ARM_GCC_484\Debug\CyLib.o"
+Deleting file ".\ARM_GCC_484\Debug\cyPm.o"
+Deleting file ".\ARM_GCC_484\Debug\cyutils.o"
+Deleting file ".\ARM_GCC_484\Debug\P0_7.o"
+Deleting file ".\ARM_GCC_484\Debug\ResetISR.o"
+Deleting file ".\ARM_GCC_484\Debug\Clock_12Khz.o"
+Deleting file ".\ARM_GCC_484\Debug\ResetTimer.o"
+Deleting file ".\ARM_GCC_484\Debug\ResetTimer_PM.o"
+Deleting file ".\ARM_GCC_484\Debug\P0_6.o"
+Deleting file ".\ARM_GCC_484\Debug\LAB_ONE.hex"
+Deleting file ".\ARM_GCC_484\Debug\LAB_ONE.elf"
+Deleting file ".\ARM_GCC_484\Debug\LAB_ONE.map"
+Deleting file ".\ARM_GCC_484\Debug\LAB_ONE.cyacd"
+Deleting file ".\LAB_ONE.cycdx"
+Deleting file ".\LAB_ONE.svd"
+Deleting file ".\LAB_ONE.rpt"
+Deleting file ".\LAB_ONE_timing.html"
+Deleting file ".\ARM_GCC_484\Debug\.deps\C_FILE.P"
+Deleting file ".\ARM_GCC_484\Debug\.deps\ARM_C_FILE.P"
+Deleting file ".\ARM_GCC_484\Debug\.deps\GNU_ARM_ASM_FILE.P"
+cydsfit.exe -.appdatapath "C:\Users\moxon\AppData\Local\Cypress Semiconductor\PSoC Creator\3.1" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p D:\PSoC4_Workshop\projects\LAB_ONE\LAB_ONE.cydsn\LAB_ONE.cyprj -d CY8C4245AXI-483 -s D:\PSoC4_Workshop\projects\LAB_ONE\LAB_ONE.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+Elaborating Design...
+HDL Generation ...
+Synthesis ...
+Place and Route ...
+Tech mapping ...
+Analog Placement ...
+Analog Routing ...
+Analog Code Generation ...
+Digital Placement ...
+Digital Routing ...
+Bitstream Generation ...
+Static timing analysis ...
+API Generation ...
+Dependency Generation ...
+Clean Temporary Files ...
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\main.c -o .\ARM_GCC_484\Debug\main.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/cyfitter_cfg.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\cyfitter_cfg.c -o .\ARM_GCC_484\Debug\cyfitter_cfg.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/cybootloader.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\cybootloader.c -o .\ARM_GCC_484\Debug\cybootloader.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/cymetadata.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\cymetadata.c -o .\ARM_GCC_484\Debug\cymetadata.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/Bootloadable.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\Bootloadable.c -o .\ARM_GCC_484\Debug\Bootloadable.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/P1_6.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\P1_6.c -o .\ARM_GCC_484\Debug\P1_6.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/Cm0Start.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\Cm0Start.c -o .\ARM_GCC_484\Debug\Cm0Start.o
+arm-none-eabi-as.exe -mcpu=cortex-m0 -mthumb -I. -I.\Generated_Source\PSoC4 -alh=.\ARM_GCC_484\Debug/CyBootAsmGnu.lst -g -o .\ARM_GCC_484\Debug\CyBootAsmGnu.o .\Generated_Source\PSoC4\CyBootAsmGnu.s
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/CyFlash.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\CyFlash.c -o .\ARM_GCC_484\Debug\CyFlash.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/CyLib.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\CyLib.c -o .\ARM_GCC_484\Debug\CyLib.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/cyPm.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\cyPm.c -o .\ARM_GCC_484\Debug\cyPm.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/cyutils.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\cyutils.c -o .\ARM_GCC_484\Debug\cyutils.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/P0_7.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\P0_7.c -o .\ARM_GCC_484\Debug\P0_7.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/ResetISR.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\ResetISR.c -o .\ARM_GCC_484\Debug\ResetISR.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/Clock_12Khz.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\Clock_12Khz.c -o .\ARM_GCC_484\Debug\Clock_12Khz.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/ResetTimer.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\ResetTimer.c -o .\ARM_GCC_484\Debug\ResetTimer.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/ResetTimer_PM.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\ResetTimer_PM.c -o .\ARM_GCC_484\Debug\ResetTimer_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\ARM_GCC_484\Debug/P0_6.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Generated_Source\PSoC4\P0_6.c -o .\ARM_GCC_484\Debug\P0_6.o
+arm-none-eabi-ar.exe -rs .\ARM_GCC_484\Debug\LAB_ONE.a .\ARM_GCC_484\Debug\cyfitter_cfg.o .\ARM_GCC_484\Debug\Bootloadable.o .\ARM_GCC_484\Debug\P1_6.o .\ARM_GCC_484\Debug\CyBootAsmGnu.o .\ARM_GCC_484\Debug\CyFlash.o .\ARM_GCC_484\Debug\CyLib.o .\ARM_GCC_484\Debug\cyPm.o .\ARM_GCC_484\Debug\cyutils.o .\ARM_GCC_484\Debug\P0_7.o .\ARM_GCC_484\Debug\ResetISR.o .\ARM_GCC_484\Debug\Clock_12Khz.o .\ARM_GCC_484\Debug\ResetTimer.o .\ARM_GCC_484\Debug\ResetTimer_PM.o .\ARM_GCC_484\Debug\P0_6.o
+arm-none-eabi-ar.exe: creating .\ARM_GCC_484\Debug\LAB_ONE.a
+arm-none-eabi-gcc.exe -Wl,--start-group -o .\ARM_GCC_484\Debug\LAB_ONE.elf .\ARM_GCC_484\Debug\main.o .\ARM_GCC_484\Debug\cybootloader.o .\ARM_GCC_484\Debug\cymetadata.o .\ARM_GCC_484\Debug\Cm0Start.o .\ARM_GCC_484\Debug\LAB_ONE.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_484\Debug\CyComponentLibrary.a" -mthumb -march=armv6-m -Wl,-Map,.\ARM_GCC_484\Debug/LAB_ONE.map -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs "-u _printf_float" "" -Wl,--gc-sections -Wl,--end-group
+cyelftool.exe -B D:\PSoC4_Workshop\projects\LAB_ONE\LAB_ONE.cydsn\ARM_GCC_484\Debug\LAB_ONE.elf --flash_row_size 128 --flash_size 32768 --flash_array_size 32768
+cyelftool.exe -S D:\PSoC4_Workshop\projects\LAB_ONE\LAB_ONE.cydsn\ARM_GCC_484\Debug\LAB_ONE.elf
+Flash used: 6696 of 32768 bytes (20.4 %). Bootloader: 4352 bytes. Application: 2344 bytes
+SRAM used: 1536 of 4096 bytes (37.5 %). Stack: 1024 bytes. Heap: 256 bytes.
+--------------- Rebuild Succeeded: 03/10/2015 11:30:23 ---------------

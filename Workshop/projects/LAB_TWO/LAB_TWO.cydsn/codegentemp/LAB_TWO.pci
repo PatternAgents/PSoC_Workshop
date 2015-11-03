@@ -1,0 +1,7 @@
+# LAB_TWO
+# 2015-08-26 21:23:49Z
+
+set_location "ClockGenBlock" m0s8clockgenblockcell -1 -1 0
+set_io "P0_6(0)" iocell 0 6
+set_io "P0_7(0)" iocell 0 7
+set_io "P1_6(0)" iocell 1 6

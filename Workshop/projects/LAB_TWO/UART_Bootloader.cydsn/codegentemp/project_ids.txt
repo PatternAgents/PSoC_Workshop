@@ -1,0 +1,7 @@
+D:\customers\patternagents\PSoC4_Workshop\projects\LAB_TWO\LAB_TWO.cydsn\LAB_TWO.cyprj|7b91b4b9-e499-425e-b74b-64372e2afea0
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|49358491-7d4f-4e21-9c0a-e0d408de5e64
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|18c52d04-c17c-41c7-adcd-e3431be33ea2
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|b49f4e55-e3c5-4add-b8f2-8cd814f53321
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|81e25bef-d8a9-4ae3-8c63-7da62e5e2d46
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|5336ed6f-35fd-4f86-bb34-50a9899f22a5
+D:\customers\patternagents\PSoC4_Workshop\projects\LAB_TWO\UART_Bootloader.cydsn\UART_Bootloader.cyprj|e50b18d2-e399-4e6d-b573-2127c20fa050

@@ -1,0 +1,7 @@
+D:\patternagents\PSoC_Workshop\projects\LAB_THREE\UART_Bootloader.cydsn\UART_Bootloader.cyprj|79768374-ff52-4a26-b8de-95d135c31873
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|6c65fe00-414d-460b-9522-40c2b16136a7
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|9337d6fa-9aae-4820-ba86-d71ecb3db60e
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|385d375e-db11-48aa-8337-09a99d95bbe3
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|b6279d05-19e6-4bbb-be47-731f2bb8c00e
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|c4953589-844e-4b3b-8f26-0f44a778e13e
+D:\patternagents\PSoC_Workshop\projects\LAB_THREE\LAB_THREE.cydsn\LAB_THREE.cyprj|72bf2bbc-477f-4681-a723-3f43183b7fc4

@@ -1,0 +1,468 @@
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccZ54gjx.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.TIMER_1_IRQ_Handler,"ax",%progbits
+  18              		.align	2
+  19              		.global	TIMER_1_IRQ_Handler
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	TIMER_1_IRQ_Handler, %function
+  23              	TIMER_1_IRQ_Handler:
+  24              	.LFB33:
+  25              		.file 1 ".\\main.c"
+   1:.\main.c      **** /*-------------------------------------------------------------*/
+   2:.\main.c      **** /* PatternAgents & PDXElectroHax                               */
+   3:.\main.c      **** /* Intro to Programmable Logic                                 */
+   4:.\main.c      **** /* Lab One - Reset Bootloader using TIMER_1                    */
+   5:.\main.c      **** /*-------------------------------------------------------------*/
+   6:.\main.c      **** 
+   7:.\main.c      **** #include <project.h>
+   8:.\main.c      **** 
+   9:.\main.c      **** /* Prototype the ISR handler */
+  10:.\main.c      **** CY_ISR_PROTO( TIMER_1_IRQ_Handler );
+  11:.\main.c      **** 
+  12:.\main.c      **** /* Implementation of the ISR handler */
+  13:.\main.c      **** CY_ISR( TIMER_1_IRQ_Handler )
+  14:.\main.c      **** {
+  26              		.loc 1 14 0
+  27              		.cfi_startproc
+  28 0000 80B5     		push	{r7, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 7, -8
+  31              		.cfi_offset 14, -4
+  32 0002 00AF     		add	r7, sp, #0
+  33              		.cfi_def_cfa_register 7
+  15:.\main.c      ****     Bootloadable_Load(); /* Start the bootloader running now */
+  34              		.loc 1 15 0
+  35 0004 FFF7FEFF 		bl	Bootloadable_Load
+  16:.\main.c      **** }
+  36              		.loc 1 16 0
+  37 0008 BD46     		mov	sp, r7
+  38              		@ sp needed
+  39 000a 80BD     		pop	{r7, pc}
+  40              		.cfi_endproc
+  41              	.LFE33:
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccZ54gjx.s 			page 2
+
+
+  42              		.size	TIMER_1_IRQ_Handler, .-TIMER_1_IRQ_Handler
+  43              		.section	.text.main,"ax",%progbits
+  44              		.align	2
+  45              		.global	main
+  46              		.code	16
+  47              		.thumb_func
+  48              		.type	main, %function
+  49              	main:
+  50              	.LFB34:
+  17:.\main.c      ****  
+  18:.\main.c      **** int main()
+  19:.\main.c      **** {
+  51              		.loc 1 19 0
+  52              		.cfi_startproc
+  53 0000 80B5     		push	{r7, lr}
+  54              		.cfi_def_cfa_offset 8
+  55              		.cfi_offset 7, -8
+  56              		.cfi_offset 14, -4
+  57 0002 00AF     		add	r7, sp, #0
+  58              		.cfi_def_cfa_register 7
+  20:.\main.c      ****     /* Start TIMER_1 - it only counts when SW1 is pressed */
+  21:.\main.c      ****     TIMER_1_Start();
+  59              		.loc 1 21 0
+  60 0004 FFF7FEFF 		bl	TIMER_1_Start
+  22:.\main.c      ****     /* Clear any pending Interrupts for TIMER_1 */
+  23:.\main.c      ****     TIMER_1_IRQ_ClearPending();
+  61              		.loc 1 23 0
+  62 0008 FFF7FEFF 		bl	TIMER_1_IRQ_ClearPending
+  24:.\main.c      ****     /* Install the Interrupt Service Handler Routine for TIMER_1 */
+  25:.\main.c      ****     TIMER_1_IRQ_StartEx( TIMER_1_IRQ_Handler );
+  63              		.loc 1 25 0
+  64 000c 0A4B     		ldr	r3, .L4
+  65 000e 181C     		mov	r0, r3
+  66 0010 FFF7FEFF 		bl	TIMER_1_IRQ_StartEx
+  26:.\main.c      ****     /* Enable All Interrupts (Global) */
+  27:.\main.c      ****     CyGlobalIntEnable;
+  67              		.loc 1 27 0
+  68              	@ 27 ".\main.c" 1
+  69 0014 62B6     		CPSIE   i
+  70              	@ 0 "" 2
+  71              		.code	16
+  72              	.L3:
+  28:.\main.c      **** 
+  29:.\main.c      ****     /* Main (infinite) loop - use the CPU to blink the LED */
+  30:.\main.c      ****     for(;;)
+  31:.\main.c      ****     {
+  32:.\main.c      ****         /* Turn the Pin On */
+  33:.\main.c      ****         P0_6_Write(1); 
+  73              		.loc 1 33 0 discriminator 1
+  74 0016 0120     		mov	r0, #1
+  75 0018 FFF7FEFF 		bl	P0_6_Write
+  34:.\main.c      ****         /* Wait for one second = 1000 milliseconds */
+  35:.\main.c      ****         CyDelay(1000);
+  76              		.loc 1 35 0 discriminator 1
+  77 001c FA23     		mov	r3, #250
+  78 001e 9B00     		lsl	r3, r3, #2
+  79 0020 181C     		mov	r0, r3
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccZ54gjx.s 			page 3
+
+
+  80 0022 FFF7FEFF 		bl	CyDelay
+  36:.\main.c      ****         /* Turn the Pin Off */
+  37:.\main.c      ****         P0_6_Write(0);
+  81              		.loc 1 37 0 discriminator 1
+  82 0026 0020     		mov	r0, #0
+  83 0028 FFF7FEFF 		bl	P0_6_Write
+  38:.\main.c      ****         /* Wait for one second = 1000 milliseconds */
+  39:.\main.c      ****         CyDelay(1000);
+  84              		.loc 1 39 0 discriminator 1
+  85 002c FA23     		mov	r3, #250
+  86 002e 9B00     		lsl	r3, r3, #2
+  87 0030 181C     		mov	r0, r3
+  88 0032 FFF7FEFF 		bl	CyDelay
+  40:.\main.c      ****     }
+  89              		.loc 1 40 0 discriminator 1
+  90 0036 EEE7     		b	.L3
+  91              	.L5:
+  92              		.align	2
+  93              	.L4:
+  94 0038 00000000 		.word	TIMER_1_IRQ_Handler
+  95              		.cfi_endproc
+  96              	.LFE34:
+  97              		.size	main, .-main
+  98              		.text
+  99              	.Letext0:
+ 100              		.section	.debug_info,"",%progbits
+ 101              	.Ldebug_info0:
+ 102 0000 AA000000 		.4byte	0xaa
+ 103 0004 0400     		.2byte	0x4
+ 104 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 105 000a 04       		.byte	0x4
+ 106 000b 01       		.uleb128 0x1
+ 107 000c 49000000 		.4byte	.LASF15
+ 108 0010 01       		.byte	0x1
+ 109 0011 69010000 		.4byte	.LASF16
+ 110 0015 06010000 		.4byte	.LASF17
+ 111 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 112 001d 00000000 		.4byte	0
+ 113 0021 00000000 		.4byte	.Ldebug_line0
+ 114 0025 02       		.uleb128 0x2
+ 115 0026 01       		.byte	0x1
+ 116 0027 06       		.byte	0x6
+ 117 0028 57010000 		.4byte	.LASF0
+ 118 002c 02       		.uleb128 0x2
+ 119 002d 01       		.byte	0x1
+ 120 002e 08       		.byte	0x8
+ 121 002f C5000000 		.4byte	.LASF1
+ 122 0033 02       		.uleb128 0x2
+ 123 0034 02       		.byte	0x2
+ 124 0035 05       		.byte	0x5
+ 125 0036 E1000000 		.4byte	.LASF2
+ 126 003a 02       		.uleb128 0x2
+ 127 003b 02       		.byte	0x2
+ 128 003c 07       		.byte	0x7
+ 129 003d 44010000 		.4byte	.LASF3
+ 130 0041 02       		.uleb128 0x2
+ 131 0042 04       		.byte	0x4
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccZ54gjx.s 			page 4
+
+
+ 132 0043 05       		.byte	0x5
+ 133 0044 D8000000 		.4byte	.LASF4
+ 134 0048 02       		.uleb128 0x2
+ 135 0049 04       		.byte	0x4
+ 136 004a 07       		.byte	0x7
+ 137 004b 20000000 		.4byte	.LASF5
+ 138 004f 02       		.uleb128 0x2
+ 139 0050 08       		.byte	0x8
+ 140 0051 05       		.byte	0x5
+ 141 0052 00000000 		.4byte	.LASF6
+ 142 0056 02       		.uleb128 0x2
+ 143 0057 08       		.byte	0x8
+ 144 0058 07       		.byte	0x7
+ 145 0059 32000000 		.4byte	.LASF7
+ 146 005d 03       		.uleb128 0x3
+ 147 005e 04       		.byte	0x4
+ 148 005f 05       		.byte	0x5
+ 149 0060 696E7400 		.ascii	"int\000"
+ 150 0064 02       		.uleb128 0x2
+ 151 0065 04       		.byte	0x4
+ 152 0066 07       		.byte	0x7
+ 153 0067 0E000000 		.4byte	.LASF8
+ 154 006b 02       		.uleb128 0x2
+ 155 006c 04       		.byte	0x4
+ 156 006d 04       		.byte	0x4
+ 157 006e 63010000 		.4byte	.LASF9
+ 158 0072 02       		.uleb128 0x2
+ 159 0073 08       		.byte	0x8
+ 160 0074 04       		.byte	0x4
+ 161 0075 EB000000 		.4byte	.LASF10
+ 162 0079 02       		.uleb128 0x2
+ 163 007a 01       		.byte	0x1
+ 164 007b 08       		.byte	0x8
+ 165 007c D3000000 		.4byte	.LASF11
+ 166 0080 02       		.uleb128 0x2
+ 167 0081 04       		.byte	0x4
+ 168 0082 07       		.byte	0x7
+ 169 0083 72010000 		.4byte	.LASF12
+ 170 0087 04       		.uleb128 0x4
+ 171 0088 F2000000 		.4byte	.LASF13
+ 172 008c 01       		.byte	0x1
+ 173 008d 0D       		.byte	0xd
+ 174 008e 00000000 		.4byte	.LFB33
+ 175 0092 0C000000 		.4byte	.LFE33-.LFB33
+ 176 0096 01       		.uleb128 0x1
+ 177 0097 9C       		.byte	0x9c
+ 178 0098 05       		.uleb128 0x5
+ 179 0099 1B000000 		.4byte	.LASF14
+ 180 009d 01       		.byte	0x1
+ 181 009e 12       		.byte	0x12
+ 182 009f 5D000000 		.4byte	0x5d
+ 183 00a3 00000000 		.4byte	.LFB34
+ 184 00a7 3C000000 		.4byte	.LFE34-.LFB34
+ 185 00ab 01       		.uleb128 0x1
+ 186 00ac 9C       		.byte	0x9c
+ 187 00ad 00       		.byte	0
+ 188              		.section	.debug_abbrev,"",%progbits
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccZ54gjx.s 			page 5
+
+
+ 189              	.Ldebug_abbrev0:
+ 190 0000 01       		.uleb128 0x1
+ 191 0001 11       		.uleb128 0x11
+ 192 0002 01       		.byte	0x1
+ 193 0003 25       		.uleb128 0x25
+ 194 0004 0E       		.uleb128 0xe
+ 195 0005 13       		.uleb128 0x13
+ 196 0006 0B       		.uleb128 0xb
+ 197 0007 03       		.uleb128 0x3
+ 198 0008 0E       		.uleb128 0xe
+ 199 0009 1B       		.uleb128 0x1b
+ 200 000a 0E       		.uleb128 0xe
+ 201 000b 55       		.uleb128 0x55
+ 202 000c 17       		.uleb128 0x17
+ 203 000d 11       		.uleb128 0x11
+ 204 000e 01       		.uleb128 0x1
+ 205 000f 10       		.uleb128 0x10
+ 206 0010 17       		.uleb128 0x17
+ 207 0011 00       		.byte	0
+ 208 0012 00       		.byte	0
+ 209 0013 02       		.uleb128 0x2
+ 210 0014 24       		.uleb128 0x24
+ 211 0015 00       		.byte	0
+ 212 0016 0B       		.uleb128 0xb
+ 213 0017 0B       		.uleb128 0xb
+ 214 0018 3E       		.uleb128 0x3e
+ 215 0019 0B       		.uleb128 0xb
+ 216 001a 03       		.uleb128 0x3
+ 217 001b 0E       		.uleb128 0xe
+ 218 001c 00       		.byte	0
+ 219 001d 00       		.byte	0
+ 220 001e 03       		.uleb128 0x3
+ 221 001f 24       		.uleb128 0x24
+ 222 0020 00       		.byte	0
+ 223 0021 0B       		.uleb128 0xb
+ 224 0022 0B       		.uleb128 0xb
+ 225 0023 3E       		.uleb128 0x3e
+ 226 0024 0B       		.uleb128 0xb
+ 227 0025 03       		.uleb128 0x3
+ 228 0026 08       		.uleb128 0x8
+ 229 0027 00       		.byte	0
+ 230 0028 00       		.byte	0
+ 231 0029 04       		.uleb128 0x4
+ 232 002a 2E       		.uleb128 0x2e
+ 233 002b 00       		.byte	0
+ 234 002c 3F       		.uleb128 0x3f
+ 235 002d 19       		.uleb128 0x19
+ 236 002e 03       		.uleb128 0x3
+ 237 002f 0E       		.uleb128 0xe
+ 238 0030 3A       		.uleb128 0x3a
+ 239 0031 0B       		.uleb128 0xb
+ 240 0032 3B       		.uleb128 0x3b
+ 241 0033 0B       		.uleb128 0xb
+ 242 0034 27       		.uleb128 0x27
+ 243 0035 19       		.uleb128 0x19
+ 244 0036 11       		.uleb128 0x11
+ 245 0037 01       		.uleb128 0x1
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccZ54gjx.s 			page 6
+
+
+ 246 0038 12       		.uleb128 0x12
+ 247 0039 06       		.uleb128 0x6
+ 248 003a 40       		.uleb128 0x40
+ 249 003b 18       		.uleb128 0x18
+ 250 003c 9642     		.uleb128 0x2116
+ 251 003e 19       		.uleb128 0x19
+ 252 003f 00       		.byte	0
+ 253 0040 00       		.byte	0
+ 254 0041 05       		.uleb128 0x5
+ 255 0042 2E       		.uleb128 0x2e
+ 256 0043 00       		.byte	0
+ 257 0044 3F       		.uleb128 0x3f
+ 258 0045 19       		.uleb128 0x19
+ 259 0046 03       		.uleb128 0x3
+ 260 0047 0E       		.uleb128 0xe
+ 261 0048 3A       		.uleb128 0x3a
+ 262 0049 0B       		.uleb128 0xb
+ 263 004a 3B       		.uleb128 0x3b
+ 264 004b 0B       		.uleb128 0xb
+ 265 004c 49       		.uleb128 0x49
+ 266 004d 13       		.uleb128 0x13
+ 267 004e 11       		.uleb128 0x11
+ 268 004f 01       		.uleb128 0x1
+ 269 0050 12       		.uleb128 0x12
+ 270 0051 06       		.uleb128 0x6
+ 271 0052 40       		.uleb128 0x40
+ 272 0053 18       		.uleb128 0x18
+ 273 0054 9642     		.uleb128 0x2116
+ 274 0056 19       		.uleb128 0x19
+ 275 0057 00       		.byte	0
+ 276 0058 00       		.byte	0
+ 277 0059 00       		.byte	0
+ 278              		.section	.debug_aranges,"",%progbits
+ 279 0000 24000000 		.4byte	0x24
+ 280 0004 0200     		.2byte	0x2
+ 281 0006 00000000 		.4byte	.Ldebug_info0
+ 282 000a 04       		.byte	0x4
+ 283 000b 00       		.byte	0
+ 284 000c 0000     		.2byte	0
+ 285 000e 0000     		.2byte	0
+ 286 0010 00000000 		.4byte	.LFB33
+ 287 0014 0C000000 		.4byte	.LFE33-.LFB33
+ 288 0018 00000000 		.4byte	.LFB34
+ 289 001c 3C000000 		.4byte	.LFE34-.LFB34
+ 290 0020 00000000 		.4byte	0
+ 291 0024 00000000 		.4byte	0
+ 292              		.section	.debug_ranges,"",%progbits
+ 293              	.Ldebug_ranges0:
+ 294 0000 00000000 		.4byte	.LFB33
+ 295 0004 0C000000 		.4byte	.LFE33
+ 296 0008 00000000 		.4byte	.LFB34
+ 297 000c 3C000000 		.4byte	.LFE34
+ 298 0010 00000000 		.4byte	0
+ 299 0014 00000000 		.4byte	0
+ 300              		.section	.debug_line,"",%progbits
+ 301              	.Ldebug_line0:
+ 302 0000 62000000 		.section	.debug_str,"MS",%progbits,1
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccZ54gjx.s 			page 7
+
+
+ 302      02001F00 
+ 302      00000201 
+ 302      FB0E0D00 
+ 302      01010101 
+ 303              	.LASF6:
+ 304 0000 6C6F6E67 		.ascii	"long long int\000"
+ 304      206C6F6E 
+ 304      6720696E 
+ 304      7400
+ 305              	.LASF8:
+ 306 000e 756E7369 		.ascii	"unsigned int\000"
+ 306      676E6564 
+ 306      20696E74 
+ 306      00
+ 307              	.LASF14:
+ 308 001b 6D61696E 		.ascii	"main\000"
+ 308      00
+ 309              	.LASF5:
+ 310 0020 6C6F6E67 		.ascii	"long unsigned int\000"
+ 310      20756E73 
+ 310      69676E65 
+ 310      6420696E 
+ 310      7400
+ 311              	.LASF7:
+ 312 0032 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 312      206C6F6E 
+ 312      6720756E 
+ 312      7369676E 
+ 312      65642069 
+ 313              	.LASF15:
+ 314 0049 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 314      4320342E 
+ 314      382E3420 
+ 314      32303134 
+ 314      30353236 
+ 315 007c 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 315      20726576 
+ 315      6973696F 
+ 315      6E203231 
+ 315      31333538 
+ 316 00af 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 316      66756E63 
+ 316      74696F6E 
+ 316      2D736563 
+ 316      74696F6E 
+ 317              	.LASF1:
+ 318 00c5 756E7369 		.ascii	"unsigned char\000"
+ 318      676E6564 
+ 318      20636861 
+ 318      7200
+ 319              	.LASF11:
+ 320 00d3 63686172 		.ascii	"char\000"
+ 320      00
+ 321              	.LASF4:
+ 322 00d8 6C6F6E67 		.ascii	"long int\000"
+ 322      20696E74 
+ 322      00
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccZ54gjx.s 			page 8
+
+
+ 323              	.LASF2:
+ 324 00e1 73686F72 		.ascii	"short int\000"
+ 324      7420696E 
+ 324      7400
+ 325              	.LASF10:
+ 326 00eb 646F7562 		.ascii	"double\000"
+ 326      6C6500
+ 327              	.LASF13:
+ 328 00f2 54494D45 		.ascii	"TIMER_1_IRQ_Handler\000"
+ 328      525F315F 
+ 328      4952515F 
+ 328      48616E64 
+ 328      6C657200 
+ 329              	.LASF17:
+ 330 0106 443A5C70 		.ascii	"D:\\patternagents\\PSoC_Workshop\\projects\\LAB_ONE"
+ 330      61747465 
+ 330      726E6167 
+ 330      656E7473 
+ 330      5C50536F 
+ 331 0135 5C4C4142 		.ascii	"\\LAB_ONE.cydsn\000"
+ 331      5F4F4E45 
+ 331      2E637964 
+ 331      736E00
+ 332              	.LASF3:
+ 333 0144 73686F72 		.ascii	"short unsigned int\000"
+ 333      7420756E 
+ 333      7369676E 
+ 333      65642069 
+ 333      6E7400
+ 334              	.LASF0:
+ 335 0157 7369676E 		.ascii	"signed char\000"
+ 335      65642063 
+ 335      68617200 
+ 336              	.LASF9:
+ 337 0163 666C6F61 		.ascii	"float\000"
+ 337      7400
+ 338              	.LASF16:
+ 339 0169 2E5C6D61 		.ascii	".\\main.c\000"
+ 339      696E2E63 
+ 339      00
+ 340              	.LASF12:
+ 341 0172 73697A65 		.ascii	"sizetype\000"
+ 341      74797065 
+ 341      00
+ 342              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

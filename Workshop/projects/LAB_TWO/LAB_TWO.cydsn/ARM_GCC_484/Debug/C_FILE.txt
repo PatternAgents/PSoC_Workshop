@@ -1,0 +1,1 @@
+'D:\patternagents\PSoC_Workshop\projects\LAB_TWO\LAB_TWO.cydsn\main.c' -o .o -T C_FILE -I 'D:\patternagents\PSoC_Workshop\projects\LAB_TWO\LAB_TWO.cydsn' -I 'D:\patternagents\PSoC_Workshop\projects\LAB_TWO\LAB_TWO.cydsn\Generated_Source\PSoC4' -f 'D:\patternagents\PSoC_Workshop\projects\LAB_TWO\LAB_TWO.cydsn\ARM_GCC_484\Debug\.deps\C_FILE.d'

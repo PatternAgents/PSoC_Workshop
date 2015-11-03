@@ -1,0 +1,1464 @@
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	dataReady
+  18              		.bss
+  19              		.align	2
+  20              		.type	dataReady, %object
+  21              		.size	dataReady, 4
+  22              	dataReady:
+  23 0000 00000000 		.space	4
+  24              		.comm	result,6,4
+  25              		.global	timer_delay
+  26              		.align	2
+  27              		.type	timer_delay, %object
+  28              		.size	timer_delay, 4
+  29              	timer_delay:
+  30 0004 00000000 		.space	4
+  31              		.section	.text.TIMER_1_IRQ_Handler,"ax",%progbits
+  32              		.align	2
+  33              		.global	TIMER_1_IRQ_Handler
+  34              		.code	16
+  35              		.thumb_func
+  36              		.type	TIMER_1_IRQ_Handler, %function
+  37              	TIMER_1_IRQ_Handler:
+  38              	.LFB33:
+  39              		.file 1 ".\\main.c"
+   1:.\main.c      **** /*-------------------------------------------------------------*/
+   2:.\main.c      **** /* PatternAgents, LLC                                          */
+   3:.\main.c      **** /* Intro to Programmable Logic                                 */
+   4:.\main.c      **** /* Lab Four - ADC, PWM, UART Example                           */
+   5:.\main.c      **** /*-------------------------------------------------------------*/
+   6:.\main.c      **** 
+   7:.\main.c      **** #include <project.h>
+   8:.\main.c      **** #include <ADC_1.h>
+   9:.\main.c      **** #include <stdio.h>
+  10:.\main.c      **** #include <stdlib.h>
+  11:.\main.c      **** #include <string.h>
+  12:.\main.c      **** 
+  13:.\main.c      **** #define CH0_N               (0x00u)
+  14:.\main.c      **** #define CH1_N               (0x01u)
+  15:.\main.c      **** #define TEMP_CH             (0x02u)
+  16:.\main.c      **** #define DELAY_1SEC          (1000u)
+  17:.\main.c      **** 
+  18:.\main.c      **** /* Get actual Vref. value from ADC SAR sequencer */
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 2
+
+
+  19:.\main.c      **** #define ADC_VREF_VALUE_V    ((float)ADC_1_DEFAULT_VREF_MV_VALUE/1000.0)
+  20:.\main.c      **** 
+  21:.\main.c      **** volatile uint32 dataReady = 0u;
+  22:.\main.c      **** volatile int16 result[ADC_1_TOTAL_CHANNELS_NUM];
+  23:.\main.c      **** volatile uint32 timer_delay = 0u;
+  24:.\main.c      **** 
+  25:.\main.c      **** 
+  26:.\main.c      **** /* Prototype the TIMER_1 Interrupt Handler */
+  27:.\main.c      **** CY_ISR_PROTO( TIMER_1_IRQ_Handler );
+  28:.\main.c      **** 
+  29:.\main.c      **** /* TIMER_1 Interrupt Handler */
+  30:.\main.c      **** CY_ISR( TIMER_1_IRQ_Handler )
+  31:.\main.c      **** {
+  40              		.loc 1 31 0
+  41              		.cfi_startproc
+  42 0000 80B5     		push	{r7, lr}
+  43              		.cfi_def_cfa_offset 8
+  44              		.cfi_offset 7, -8
+  45              		.cfi_offset 14, -4
+  46 0002 00AF     		add	r7, sp, #0
+  47              		.cfi_def_cfa_register 7
+  32:.\main.c      ****     Bootloadable_Load(); /* Start the bootloader running now */       
+  48              		.loc 1 32 0
+  49 0004 FFF7FEFF 		bl	Bootloadable_Load
+  33:.\main.c      **** }
+  50              		.loc 1 33 0
+  51 0008 BD46     		mov	sp, r7
+  52              		@ sp needed
+  53 000a 80BD     		pop	{r7, pc}
+  54              		.cfi_endproc
+  55              	.LFE33:
+  56              		.size	TIMER_1_IRQ_Handler, .-TIMER_1_IRQ_Handler
+  57              		.section	.text.PWM_1_IRQ_Handler,"ax",%progbits
+  58              		.align	2
+  59              		.global	PWM_1_IRQ_Handler
+  60              		.code	16
+  61              		.thumb_func
+  62              		.type	PWM_1_IRQ_Handler, %function
+  63              	PWM_1_IRQ_Handler:
+  64              	.LFB34:
+  34:.\main.c      **** 
+  35:.\main.c      **** /* Prototype the PWM_1 Interrupt Handler */
+  36:.\main.c      **** CY_ISR_PROTO( PWM_1_IRQ_Handler );
+  37:.\main.c      **** 
+  38:.\main.c      **** /* PWM_1 Interrupt Handler */
+  39:.\main.c      **** CY_ISR( PWM_1_IRQ_Handler )
+  40:.\main.c      **** {
+  65              		.loc 1 40 0
+  66              		.cfi_startproc
+  67 0000 80B5     		push	{r7, lr}
+  68              		.cfi_def_cfa_offset 8
+  69              		.cfi_offset 7, -8
+  70              		.cfi_offset 14, -4
+  71 0002 00AF     		add	r7, sp, #0
+  72              		.cfi_def_cfa_register 7
+  41:.\main.c      ****     timer_delay++;
+  73              		.loc 1 41 0
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 3
+
+
+  74 0004 0A4B     		ldr	r3, .L4
+  75 0006 1B68     		ldr	r3, [r3]
+  76 0008 5A1C     		add	r2, r3, #1
+  77 000a 094B     		ldr	r3, .L4
+  78 000c 1A60     		str	r2, [r3]
+  42:.\main.c      ****     
+  43:.\main.c      ****     /* Measures temperature once per second */
+  44:.\main.c      ****     if(timer_delay > DELAY_1SEC)
+  79              		.loc 1 44 0
+  80 000e 084B     		ldr	r3, .L4
+  81 0010 1A68     		ldr	r2, [r3]
+  82 0012 FA23     		mov	r3, #250
+  83 0014 9B00     		lsl	r3, r3, #2
+  84 0016 9A42     		cmp	r2, r3
+  85 0018 04D9     		bls	.L3
+  45:.\main.c      ****     {
+  46:.\main.c      ****         /* Enables injection channel for next scan */
+  47:.\main.c      ****         ADC_1_EnableInjection();
+  86              		.loc 1 47 0
+  87 001a FFF7FEFF 		bl	ADC_1_EnableInjection
+  48:.\main.c      ****         timer_delay = 0u;
+  88              		.loc 1 48 0
+  89 001e 044B     		ldr	r3, .L4
+  90 0020 0022     		mov	r2, #0
+  91 0022 1A60     		str	r2, [r3]
+  92              	.L3:
+  49:.\main.c      ****     }    
+  50:.\main.c      ****     
+  51:.\main.c      ****     /* Clears interrupt request from terminal count */
+  52:.\main.c      ****     PWM_1_ClearInterrupt(PWM_1_INTR_MASK_TC);
+  93              		.loc 1 52 0
+  94 0024 0120     		mov	r0, #1
+  95 0026 FFF7FEFF 		bl	PWM_1_ClearInterrupt
+  53:.\main.c      **** }
+  96              		.loc 1 53 0
+  97 002a BD46     		mov	sp, r7
+  98              		@ sp needed
+  99 002c 80BD     		pop	{r7, pc}
+ 100              	.L5:
+ 101 002e C046     		.align	2
+ 102              	.L4:
+ 103 0030 00000000 		.word	timer_delay
+ 104              		.cfi_endproc
+ 105              	.LFE34:
+ 106              		.size	PWM_1_IRQ_Handler, .-PWM_1_IRQ_Handler
+ 107              		.section	.text.ADC_1_IRQ_Handler,"ax",%progbits
+ 108              		.align	2
+ 109              		.global	ADC_1_IRQ_Handler
+ 110              		.code	16
+ 111              		.thumb_func
+ 112              		.type	ADC_1_IRQ_Handler, %function
+ 113              	ADC_1_IRQ_Handler:
+ 114              	.LFB35:
+  54:.\main.c      **** 
+  55:.\main.c      **** /* Prototype the ADC_1 Interrupt Handler */
+  56:.\main.c      **** CY_ISR_PROTO( ADC_1_IRQ_Handler );
+  57:.\main.c      **** 
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 4
+
+
+  58:.\main.c      **** /* ADC_1 Interrupt Handler */
+  59:.\main.c      **** CY_ISR( ADC_1_IRQ_Handler )
+  60:.\main.c      **** {
+ 115              		.loc 1 60 0
+ 116              		.cfi_startproc
+ 117 0000 80B5     		push	{r7, lr}
+ 118              		.cfi_def_cfa_offset 8
+ 119              		.cfi_offset 7, -8
+ 120              		.cfi_offset 14, -4
+ 121 0002 82B0     		sub	sp, sp, #8
+ 122              		.cfi_def_cfa_offset 16
+ 123 0004 00AF     		add	r7, sp, #0
+ 124              		.cfi_def_cfa_register 7
+  61:.\main.c      ****     uint32 intr_status;
+  62:.\main.c      ****     uint32 range_status;
+  63:.\main.c      **** 
+  64:.\main.c      ****     /* Read interrupt status registers */
+  65:.\main.c      ****     intr_status = ADC_1_SAR_INTR_MASKED_REG;
+ 125              		.loc 1 65 0
+ 126 0006 214B     		ldr	r3, .L10
+ 127 0008 1B68     		ldr	r3, [r3]
+ 128 000a 7B60     		str	r3, [r7, #4]
+  66:.\main.c      ****     /* Check for End of Scan interrupt */
+  67:.\main.c      ****     if((intr_status & ADC_1_EOS_MASK) != 0u)
+ 129              		.loc 1 67 0
+ 130 000c 7A68     		ldr	r2, [r7, #4]
+ 131 000e 0123     		mov	r3, #1
+ 132 0010 1340     		and	r3, r2
+ 133 0012 24D0     		beq	.L7
+  68:.\main.c      ****     {
+  69:.\main.c      ****         /* Read range detect status */
+  70:.\main.c      ****         range_status = ADC_1_SAR_RANGE_INTR_MASKED_REG;
+ 134              		.loc 1 70 0
+ 135 0014 1E4B     		ldr	r3, .L10+4
+ 136 0016 1B68     		ldr	r3, [r3]
+ 137 0018 3B60     		str	r3, [r7]
+  71:.\main.c      ****         /* Verify that the conversion result met the condition Low_Limit <= Result < High_Limit  */
+  72:.\main.c      ****         if((range_status & (uint32)(1ul << CH0_N)) != 0u) 
+ 138              		.loc 1 72 0
+ 139 001a 3A68     		ldr	r2, [r7]
+ 140 001c 0123     		mov	r3, #1
+ 141 001e 1340     		and	r3, r2
+ 142 0020 14D0     		beq	.L8
+  73:.\main.c      ****         {
+  74:.\main.c      ****             /* Read conversion result */
+  75:.\main.c      ****             result[CH0_N] = ADC_1_GetResult16(CH0_N);
+ 143              		.loc 1 75 0
+ 144 0022 0020     		mov	r0, #0
+ 145 0024 FFF7FEFF 		bl	ADC_1_GetResult16
+ 146 0028 031C     		mov	r3, r0
+ 147 002a 1A1C     		mov	r2, r3
+ 148 002c 194B     		ldr	r3, .L10+8
+ 149 002e 1A80     		strh	r2, [r3]
+  76:.\main.c      ****             result[CH1_N] = ADC_1_GetResult16(CH1_N);
+ 150              		.loc 1 76 0
+ 151 0030 0120     		mov	r0, #1
+ 152 0032 FFF7FEFF 		bl	ADC_1_GetResult16
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 5
+
+
+ 153 0036 031C     		mov	r3, r0
+ 154 0038 1A1C     		mov	r2, r3
+ 155 003a 164B     		ldr	r3, .L10+8
+ 156 003c 5A80     		strh	r2, [r3, #2]
+  77:.\main.c      ****             /* Set PWM compare from channel0 */
+  78:.\main.c      ****             PWM_1_WriteCompare(result[CH0_N]);
+ 157              		.loc 1 78 0
+ 158 003e 154B     		ldr	r3, .L10+8
+ 159 0040 1B88     		ldrh	r3, [r3]
+ 160 0042 9BB2     		uxth	r3, r3
+ 161 0044 1BB2     		sxth	r3, r3
+ 162 0046 181C     		mov	r0, r3
+ 163 0048 FFF7FEFF 		bl	PWM_1_WriteCompare
+ 164              	.L8:
+  79:.\main.c      ****         }    
+  80:.\main.c      **** 
+  81:.\main.c      ****         /* Clear range detect status */
+  82:.\main.c      ****         ADC_1_SAR_RANGE_INTR_REG = range_status;
+ 165              		.loc 1 82 0
+ 166 004c 124B     		ldr	r3, .L10+12
+ 167 004e 3A68     		ldr	r2, [r7]
+ 168 0050 1A60     		str	r2, [r3]
+  83:.\main.c      ****         dataReady |= ADC_1_EOS_MASK;
+ 169              		.loc 1 83 0
+ 170 0052 124B     		ldr	r3, .L10+16
+ 171 0054 1B68     		ldr	r3, [r3]
+ 172 0056 0122     		mov	r2, #1
+ 173 0058 1A43     		orr	r2, r3
+ 174 005a 104B     		ldr	r3, .L10+16
+ 175 005c 1A60     		str	r2, [r3]
+ 176              	.L7:
+  84:.\main.c      ****     }    
+  85:.\main.c      **** 
+  86:.\main.c      ****     /* Check for Injection End of Conversion */
+  87:.\main.c      ****     if((intr_status & ADC_1_INJ_EOC_MASK) != 0u)
+ 177              		.loc 1 87 0
+ 178 005e 7A68     		ldr	r2, [r7, #4]
+ 179 0060 1023     		mov	r3, #16
+ 180 0062 1340     		and	r3, r2
+ 181 0064 0CD0     		beq	.L9
+  88:.\main.c      ****     {
+  89:.\main.c      ****         result[TEMP_CH] = ADC_1_GetResult16(TEMP_CH);
+ 182              		.loc 1 89 0
+ 183 0066 0220     		mov	r0, #2
+ 184 0068 FFF7FEFF 		bl	ADC_1_GetResult16
+ 185 006c 031C     		mov	r3, r0
+ 186 006e 1A1C     		mov	r2, r3
+ 187 0070 084B     		ldr	r3, .L10+8
+ 188 0072 9A80     		strh	r2, [r3, #4]
+  90:.\main.c      ****         dataReady |= ADC_1_INJ_EOC_MASK;
+ 189              		.loc 1 90 0
+ 190 0074 094B     		ldr	r3, .L10+16
+ 191 0076 1B68     		ldr	r3, [r3]
+ 192 0078 1022     		mov	r2, #16
+ 193 007a 1A43     		orr	r2, r3
+ 194 007c 074B     		ldr	r3, .L10+16
+ 195 007e 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 6
+
+
+ 196              	.L9:
+  91:.\main.c      ****     }    
+  92:.\main.c      **** 
+  93:.\main.c      ****     /* Clear handled interrupt */
+  94:.\main.c      ****     ADC_1_SAR_INTR_REG = intr_status;    
+ 197              		.loc 1 94 0
+ 198 0080 074B     		ldr	r3, .L10+20
+ 199 0082 7A68     		ldr	r2, [r7, #4]
+ 200 0084 1A60     		str	r2, [r3]
+  95:.\main.c      **** }
+ 201              		.loc 1 95 0
+ 202 0086 BD46     		mov	sp, r7
+ 203 0088 02B0     		add	sp, sp, #8
+ 204              		@ sp needed
+ 205 008a 80BD     		pop	{r7, pc}
+ 206              	.L11:
+ 207              		.align	2
+ 208              	.L10:
+ 209 008c 1C021A40 		.word	1075446300
+ 210 0090 3C021A40 		.word	1075446332
+ 211 0094 00000000 		.word	result
+ 212 0098 30021A40 		.word	1075446320
+ 213 009c 00000000 		.word	dataReady
+ 214 00a0 10021A40 		.word	1075446288
+ 215              		.cfi_endproc
+ 216              	.LFE35:
+ 217              		.size	ADC_1_IRQ_Handler, .-ADC_1_IRQ_Handler
+ 218              		.section	.rodata
+ 219              		.align	2
+ 220              	.LC4:
+ 221 0000 0D0A2050 		.ascii	"\015\012 PatternAgents Lab#4 \015\012\000"
+ 221      61747465 
+ 221      726E4167 
+ 221      656E7473 
+ 221      204C6162 
+ 222 001a 0000     		.align	2
+ 223              	.LC10:
+ 224 001c 54656D70 		.ascii	"Temperature value: %dC \015\012\000"
+ 224      65726174 
+ 224      75726520 
+ 224      76616C75 
+ 224      653A2025 
+ 225 0036 0000     		.align	2
+ 226              	.LC12:
+ 227 0038 4130206D 		.ascii	"A0 measured voltage: %dmV \015\012\000"
+ 227      65617375 
+ 227      72656420 
+ 227      766F6C74 
+ 227      6167653A 
+ 228 0055 000000   		.align	2
+ 229              	.LC14:
+ 230 0058 4131206D 		.ascii	"A1 measured voltage: %dmV \015\012\000"
+ 230      65617375 
+ 230      72656420 
+ 230      766F6C74 
+ 230      6167653A 
+ 231 0075 000000   		.align	2
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 7
+
+
+ 232              	.LC16:
+ 233 0078 53776974 		.ascii	"Switches: %d, %d, %d \015\012\000"
+ 233      63686573 
+ 233      3A202564 
+ 233      2C202564 
+ 233      2C202564 
+ 234              		.section	.text.main,"ax",%progbits
+ 235              		.align	2
+ 236              		.global	main
+ 237              		.code	16
+ 238              		.thumb_func
+ 239              		.type	main, %function
+ 240              	main:
+ 241              	.LFB36:
+  96:.\main.c      **** 
+  97:.\main.c      **** int main()
+  98:.\main.c      **** {
+ 242              		.loc 1 98 0
+ 243              		.cfi_startproc
+ 244 0000 90B5     		push	{r4, r7, lr}
+ 245              		.cfi_def_cfa_offset 12
+ 246              		.cfi_offset 4, -12
+ 247              		.cfi_offset 7, -8
+ 248              		.cfi_offset 14, -4
+ 249 0002 C5B0     		sub	sp, sp, #276
+ 250              		.cfi_def_cfa_offset 288
+ 251 0004 02AF     		add	r7, sp, #8
+ 252              		.cfi_def_cfa 7, 280
+  99:.\main.c      ****     int16 res, res1 = 0;
+ 253              		.loc 1 99 0
+ 254 0006 7B1D     		add	r3, r7, #5
+ 255 0008 FF33     		add	r3, r3, #255
+ 256 000a 0022     		mov	r2, #0
+ 257 000c 1A80     		strh	r2, [r3]
+ 100:.\main.c      ****     char SW1, SW2, SW3 = 0;
+ 258              		.loc 1 100 0
+ 259 000e 3B1D     		add	r3, r7, #4
+ 260 0010 FF33     		add	r3, r3, #255
+ 261 0012 0022     		mov	r2, #0
+ 262 0014 1A70     		strb	r2, [r3]
+ 101:.\main.c      ****     int32 temperature;
+ 102:.\main.c      ****     char  uartLine[250];
+ 103:.\main.c      ****     int16 ADCCountsCorrected;
+ 104:.\main.c      **** 
+ 105:.\main.c      ****     /* Start TIMER_1 - it only counts when SW1 is pressed */
+ 106:.\main.c      ****     TIMER_1_Start();
+ 263              		.loc 1 106 0
+ 264 0016 FFF7FEFF 		bl	TIMER_1_Start
+ 107:.\main.c      ****     /* Clear any pending Interrupts for TIMER_1 */
+ 108:.\main.c      ****     TIMER_1_IRQ_ClearPending();
+ 265              		.loc 1 108 0
+ 266 001a FFF7FEFF 		bl	TIMER_1_IRQ_ClearPending
+ 109:.\main.c      ****     /* Install the Interrupt Service Handler Routine for TIMER_1 */
+ 110:.\main.c      ****     TIMER_1_IRQ_StartEx( TIMER_1_IRQ_Handler );
+ 267              		.loc 1 110 0
+ 268 001e 5F4B     		ldr	r3, .L16
+ 269 0020 181C     		mov	r0, r3
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 8
+
+
+ 270 0022 FFF7FEFF 		bl	TIMER_1_IRQ_StartEx
+ 111:.\main.c      **** 
+ 112:.\main.c      ****     /* Initialize the UART */
+ 113:.\main.c      ****     UART_1_Start();
+ 271              		.loc 1 113 0
+ 272 0026 FFF7FEFF 		bl	UART_1_Start
+ 114:.\main.c      ****     UART_1_UartPutString("\r\n PatternAgents Lab#4 \r\n");
+ 273              		.loc 1 114 0
+ 274 002a 5D4B     		ldr	r3, .L16+4
+ 275 002c 181C     		mov	r0, r3
+ 276 002e FFF7FEFF 		bl	UART_1_UartPutString
+ 115:.\main.c      **** 
+ 116:.\main.c      ****     /* Start the PWM */
+ 117:.\main.c      ****     PWM_1_Start();
+ 277              		.loc 1 117 0
+ 278 0032 FFF7FEFF 		bl	PWM_1_Start
+ 118:.\main.c      ****     PWM_1_TriggerCommand(PWM_1_MASK, PWM_1_CMD_START);
+ 279              		.loc 1 118 0
+ 280 0036 0220     		mov	r0, #2
+ 281 0038 1821     		mov	r1, #24
+ 282 003a FFF7FEFF 		bl	PWM_1_TriggerCommand
+ 119:.\main.c      ****     /* Clear any pending Interrupts for PWM_1 */
+ 120:.\main.c      ****     PWM_1_IRQ_ClearPending();
+ 283              		.loc 1 120 0
+ 284 003e FFF7FEFF 		bl	PWM_1_IRQ_ClearPending
+ 121:.\main.c      ****     /* Install the Interrupt Service Handler Routine for PWM_1 */
+ 122:.\main.c      ****     PWM_1_IRQ_StartEx( PWM_1_IRQ_Handler );
+ 285              		.loc 1 122 0
+ 286 0042 584B     		ldr	r3, .L16+8
+ 287 0044 181C     		mov	r0, r3
+ 288 0046 FFF7FEFF 		bl	PWM_1_IRQ_StartEx
+ 123:.\main.c      **** 
+ 124:.\main.c      ****     /* Init and start sequencing SAR ADC */
+ 125:.\main.c      ****     ADC_1_Start();
+ 289              		.loc 1 125 0
+ 290 004a FFF7FEFF 		bl	ADC_1_Start
+ 126:.\main.c      ****     ADC_1_StartConvert();
+ 291              		.loc 1 126 0
+ 292 004e FFF7FEFF 		bl	ADC_1_StartConvert
+ 127:.\main.c      ****     /* Enable interrupt and set interrupt handler to local routine */
+ 128:.\main.c      ****     ADC_1_IRQ_StartEx(ADC_1_IRQ_Handler);
+ 293              		.loc 1 128 0
+ 294 0052 554B     		ldr	r3, .L16+12
+ 295 0054 181C     		mov	r0, r3
+ 296 0056 FFF7FEFF 		bl	ADC_1_IRQ_StartEx
+ 129:.\main.c      ****     
+ 130:.\main.c      ****     /* Enable All Interrupts (Global) */
+ 131:.\main.c      ****     CyGlobalIntEnable;
+ 297              		.loc 1 131 0
+ 298              	@ 131 ".\main.c" 1
+ 299 005a 62B6     		CPSIE   i
+ 300              	@ 0 "" 2
+ 301              		.code	16
+ 302              	.L15:
+ 132:.\main.c      **** 
+ 133:.\main.c      ****     /* Main (infinite) loop - Does nothing! it's all Hardware! */
+ 134:.\main.c      ****     for(;;)
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 9
+
+
+ 135:.\main.c      ****     {
+ 136:.\main.c      ****         /* When conversion of sequencing channels has completed */
+ 137:.\main.c      ****         if((dataReady & ADC_1_EOS_MASK) != 0u)
+ 303              		.loc 1 137 0
+ 304 005c 534B     		ldr	r3, .L16+16
+ 305 005e 1A68     		ldr	r2, [r3]
+ 306 0060 0123     		mov	r3, #1
+ 307 0062 1340     		and	r3, r2
+ 308 0064 1FD0     		beq	.L13
+ 138:.\main.c      ****         {
+ 139:.\main.c      ****             /* Get voltage, measured by ADC */
+ 140:.\main.c      ****             dataReady &= ~ADC_1_EOS_MASK;
+ 309              		.loc 1 140 0
+ 310 0066 514B     		ldr	r3, .L16+16
+ 311 0068 1B68     		ldr	r3, [r3]
+ 312 006a 0122     		mov	r2, #1
+ 313 006c 191C     		mov	r1, r3
+ 314 006e 9143     		bic	r1, r2
+ 315 0070 0A1C     		mov	r2, r1
+ 316 0072 4E4B     		ldr	r3, .L16+16
+ 317 0074 1A60     		str	r2, [r3]
+ 141:.\main.c      ****             res  = ADC_1_CountsTo_mVolts(CH0_N, result[CH0_N]);
+ 318              		.loc 1 141 0
+ 319 0076 4E4B     		ldr	r3, .L16+20
+ 320 0078 1B88     		ldrh	r3, [r3]
+ 321 007a 9BB2     		uxth	r3, r3
+ 322 007c FC1D     		add	r4, r7, #7
+ 323 007e FF34     		add	r4, r4, #255
+ 324 0080 1BB2     		sxth	r3, r3
+ 325 0082 0020     		mov	r0, #0
+ 326 0084 191C     		mov	r1, r3
+ 327 0086 FFF7FEFF 		bl	ADC_1_CountsTo_mVolts
+ 328 008a 031C     		mov	r3, r0
+ 329 008c 2380     		strh	r3, [r4]
+ 142:.\main.c      ****             res1 = ADC_1_CountsTo_mVolts(CH1_N, result[CH1_N]);
+ 330              		.loc 1 142 0
+ 331 008e 484B     		ldr	r3, .L16+20
+ 332 0090 5B88     		ldrh	r3, [r3, #2]
+ 333 0092 9BB2     		uxth	r3, r3
+ 334 0094 7C1D     		add	r4, r7, #5
+ 335 0096 FF34     		add	r4, r4, #255
+ 336 0098 1BB2     		sxth	r3, r3
+ 337 009a 0120     		mov	r0, #1
+ 338 009c 191C     		mov	r1, r3
+ 339 009e FFF7FEFF 		bl	ADC_1_CountsTo_mVolts
+ 340 00a2 031C     		mov	r3, r0
+ 341 00a4 2380     		strh	r3, [r4]
+ 342              	.L13:
+ 143:.\main.c      ****         }    
+ 144:.\main.c      ****         
+ 145:.\main.c      ****         /* When conversion of the injection channel has completed */
+ 146:.\main.c      ****         if((dataReady & ADC_1_INJ_EOC_MASK) != 0u)
+ 343              		.loc 1 146 0
+ 344 00a6 414B     		ldr	r3, .L16+16
+ 345 00a8 1A68     		ldr	r2, [r3]
+ 346 00aa 1023     		mov	r3, #16
+ 347 00ac 1340     		and	r3, r2
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 10
+
+
+ 348 00ae 74D0     		beq	.L14
+ 147:.\main.c      ****         {
+ 148:.\main.c      ****             dataReady &= ~ADC_1_INJ_EOC_MASK;
+ 349              		.loc 1 148 0
+ 350 00b0 3E4B     		ldr	r3, .L16+16
+ 351 00b2 1B68     		ldr	r3, [r3]
+ 352 00b4 1022     		mov	r2, #16
+ 353 00b6 191C     		mov	r1, r3
+ 354 00b8 9143     		bic	r1, r2
+ 355 00ba 0A1C     		mov	r2, r1
+ 356 00bc 3B4B     		ldr	r3, .L16+16
+ 357 00be 1A60     		str	r2, [r3]
+ 149:.\main.c      **** 
+ 150:.\main.c      ****             /******************************************************************************
+ 151:.\main.c      ****             * Adjust data from ADC with respect to Vref value.
+ 152:.\main.c      ****             * This adjustment is to be done if Vref is set to any other than
+ 153:.\main.c      ****             * internal 1.024V.
+ 154:.\main.c      ****             * For more detailed description see Functional Description section
+ 155:.\main.c      ****             * of DieTemp P4 datasheet.
+ 156:.\main.c      ****             *******************************************************************************/
+ 157:.\main.c      ****             ADCCountsCorrected = result[TEMP_CH]*((int16)((float)ADC_VREF_VALUE_V/1.024));
+ 358              		.loc 1 157 0
+ 359 00c0 7B1C     		add	r3, r7, #1
+ 360 00c2 FF33     		add	r3, r3, #255
+ 361 00c4 3A4A     		ldr	r2, .L16+20
+ 362 00c6 9288     		ldrh	r2, [r2, #4]
+ 363 00c8 1A80     		strh	r2, [r3]
+ 158:.\main.c      ****             
+ 159:.\main.c      ****             temperature = DieTemp_CountsTo_Celsius(ADCCountsCorrected);
+ 364              		.loc 1 159 0
+ 365 00ca 7B1C     		add	r3, r7, #1
+ 366 00cc FF33     		add	r3, r3, #255
+ 367 00ce 0022     		mov	r2, #0
+ 368 00d0 9B5E     		ldrsh	r3, [r3, r2]
+ 369 00d2 181C     		mov	r0, r3
+ 370 00d4 FFF7FEFF 		bl	DieTemp_CountsTo_Celsius
+ 371 00d8 031C     		mov	r3, r0
+ 372 00da FC21     		mov	r1, #252
+ 373 00dc C919     		add	r1, r1, r7
+ 374 00de 0B60     		str	r3, [r1]
+ 160:.\main.c      **** 
+ 161:.\main.c      ****             /* Print temperature value to UART */
+ 162:.\main.c      ****             sprintf(
+ 163:.\main.c      ****                     uartLine, "Temperature value: %dC \r\n",
+ 164:.\main.c      ****                     (int16) temperature
+ 375              		.loc 1 164 0
+ 376 00e0 FC22     		mov	r2, #252
+ 377 00e2 D219     		add	r2, r2, r7
+ 378 00e4 1368     		ldr	r3, [r2]
+ 379 00e6 9BB2     		uxth	r3, r3
+ 162:.\main.c      ****             sprintf(
+ 380              		.loc 1 162 0
+ 381 00e8 1BB2     		sxth	r3, r3
+ 382 00ea 391C     		mov	r1, r7
+ 383 00ec 314A     		ldr	r2, .L16+24
+ 384 00ee 081C     		mov	r0, r1
+ 385 00f0 111C     		mov	r1, r2
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 11
+
+
+ 386 00f2 1A1C     		mov	r2, r3
+ 387 00f4 FFF7FEFF 		bl	sprintf
+ 165:.\main.c      ****                     );
+ 166:.\main.c      ****             
+ 167:.\main.c      ****             UART_1_UartPutString(uartLine);
+ 388              		.loc 1 167 0
+ 389 00f8 3B1C     		mov	r3, r7
+ 390 00fa 181C     		mov	r0, r3
+ 391 00fc FFF7FEFF 		bl	UART_1_UartPutString
+ 168:.\main.c      ****             
+ 169:.\main.c      ****             /* Print voltage value of A0 to UART */
+ 170:.\main.c      ****             sprintf(
+ 171:.\main.c      ****                 uartLine, "A0 measured voltage: %dmV \r\n",
+ 172:.\main.c      ****                 (uint16) res
+ 392              		.loc 1 172 0
+ 393 0100 FB1D     		add	r3, r7, #7
+ 394 0102 FF33     		add	r3, r3, #255
+ 395 0104 1B88     		ldrh	r3, [r3]
+ 170:.\main.c      ****             sprintf(
+ 396              		.loc 1 170 0
+ 397 0106 391C     		mov	r1, r7
+ 398 0108 2B4A     		ldr	r2, .L16+28
+ 399 010a 081C     		mov	r0, r1
+ 400 010c 111C     		mov	r1, r2
+ 401 010e 1A1C     		mov	r2, r3
+ 402 0110 FFF7FEFF 		bl	sprintf
+ 173:.\main.c      ****                 );
+ 174:.\main.c      ****             
+ 175:.\main.c      ****             UART_1_UartPutString(uartLine);
+ 403              		.loc 1 175 0
+ 404 0114 3B1C     		mov	r3, r7
+ 405 0116 181C     		mov	r0, r3
+ 406 0118 FFF7FEFF 		bl	UART_1_UartPutString
+ 176:.\main.c      ****  
+ 177:.\main.c      ****             /* Print voltage value of A1 to UART */
+ 178:.\main.c      ****             sprintf(
+ 179:.\main.c      ****                 uartLine, "A1 measured voltage: %dmV \r\n",
+ 180:.\main.c      ****                 (uint16) res1
+ 407              		.loc 1 180 0
+ 408 011c 7B1D     		add	r3, r7, #5
+ 409 011e FF33     		add	r3, r3, #255
+ 410 0120 1B88     		ldrh	r3, [r3]
+ 178:.\main.c      ****             sprintf(
+ 411              		.loc 1 178 0
+ 412 0122 391C     		mov	r1, r7
+ 413 0124 254A     		ldr	r2, .L16+32
+ 414 0126 081C     		mov	r0, r1
+ 415 0128 111C     		mov	r1, r2
+ 416 012a 1A1C     		mov	r2, r3
+ 417 012c FFF7FEFF 		bl	sprintf
+ 181:.\main.c      ****                 );
+ 182:.\main.c      ****             
+ 183:.\main.c      ****             UART_1_UartPutString(uartLine);
+ 418              		.loc 1 183 0
+ 419 0130 3B1C     		mov	r3, r7
+ 420 0132 181C     		mov	r0, r3
+ 421 0134 FFF7FEFF 		bl	UART_1_UartPutString
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 12
+
+
+ 184:.\main.c      **** 
+ 185:.\main.c      **** 
+ 186:.\main.c      ****             /* Read the Midi Shield Switches */
+ 187:.\main.c      ****             SW1 = P1_3_Read();
+ 422              		.loc 1 187 0
+ 423 0138 3C1C     		mov	r4, r7
+ 424 013a FB34     		add	r4, r4, #251
+ 425 013c FFF7FEFF 		bl	P1_3_Read
+ 426 0140 031C     		mov	r3, r0
+ 427 0142 2370     		strb	r3, [r4]
+ 188:.\main.c      ****             SW2 = P1_4_Read();
+ 428              		.loc 1 188 0
+ 429 0144 3C1C     		mov	r4, r7
+ 430 0146 FA34     		add	r4, r4, #250
+ 431 0148 FFF7FEFF 		bl	P1_4_Read
+ 432 014c 031C     		mov	r3, r0
+ 433 014e 2370     		strb	r3, [r4]
+ 189:.\main.c      ****             SW3 = P1_5_Read();
+ 434              		.loc 1 189 0
+ 435 0150 3C1D     		add	r4, r7, #4
+ 436 0152 FF34     		add	r4, r4, #255
+ 437 0154 FFF7FEFF 		bl	P1_5_Read
+ 438 0158 031C     		mov	r3, r0
+ 439 015a 2370     		strb	r3, [r4]
+ 190:.\main.c      ****             
+ 191:.\main.c      ****             P1_0_Write( SW2 );
+ 440              		.loc 1 191 0
+ 441 015c 3B1C     		mov	r3, r7
+ 442 015e FA33     		add	r3, r3, #250
+ 443 0160 1B78     		ldrb	r3, [r3]
+ 444 0162 181C     		mov	r0, r3
+ 445 0164 FFF7FEFF 		bl	P1_0_Write
+ 192:.\main.c      ****             P1_1_Write( SW3 );
+ 446              		.loc 1 192 0
+ 447 0168 3B1D     		add	r3, r7, #4
+ 448 016a FF33     		add	r3, r3, #255
+ 449 016c 1B78     		ldrb	r3, [r3]
+ 450 016e 181C     		mov	r0, r3
+ 451 0170 FFF7FEFF 		bl	P1_1_Write
+ 193:.\main.c      ****             
+ 194:.\main.c      ****             /* Print switch value to UART */
+ 195:.\main.c      ****             sprintf(
+ 452              		.loc 1 195 0
+ 453 0174 3B1C     		mov	r3, r7
+ 454 0176 FB33     		add	r3, r3, #251
+ 455 0178 1A78     		ldrb	r2, [r3]
+ 456 017a 3B1C     		mov	r3, r7
+ 457 017c FA33     		add	r3, r3, #250
+ 458 017e 1B78     		ldrb	r3, [r3]
+ 459 0180 391D     		add	r1, r7, #4
+ 460 0182 FF31     		add	r1, r1, #255
+ 461 0184 0C78     		ldrb	r4, [r1]
+ 462 0186 381C     		mov	r0, r7
+ 463 0188 0D49     		ldr	r1, .L16+36
+ 464 018a 0094     		str	r4, [sp]
+ 465 018c FFF7FEFF 		bl	sprintf
+ 196:.\main.c      ****                 uartLine, "Switches: %d, %d, %d \r\n",
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 13
+
+
+ 197:.\main.c      ****                 SW1, SW2, SW3
+ 198:.\main.c      ****                 );
+ 199:.\main.c      ****             
+ 200:.\main.c      ****             UART_1_UartPutString(uartLine);
+ 466              		.loc 1 200 0
+ 467 0190 3B1C     		mov	r3, r7
+ 468 0192 181C     		mov	r0, r3
+ 469 0194 FFF7FEFF 		bl	UART_1_UartPutString
+ 201:.\main.c      **** 
+ 202:.\main.c      ****             
+ 203:.\main.c      ****         }
+ 204:.\main.c      ****     }
+ 470              		.loc 1 204 0
+ 471 0198 60E7     		b	.L15
+ 472              	.L14:
+ 473 019a 5FE7     		b	.L15
+ 474              	.L17:
+ 475              		.align	2
+ 476              	.L16:
+ 477 019c 00000000 		.word	TIMER_1_IRQ_Handler
+ 478 01a0 00000000 		.word	.LC4
+ 479 01a4 00000000 		.word	PWM_1_IRQ_Handler
+ 480 01a8 00000000 		.word	ADC_1_IRQ_Handler
+ 481 01ac 00000000 		.word	dataReady
+ 482 01b0 00000000 		.word	result
+ 483 01b4 1C000000 		.word	.LC10
+ 484 01b8 38000000 		.word	.LC12
+ 485 01bc 58000000 		.word	.LC14
+ 486 01c0 78000000 		.word	.LC16
+ 487              		.cfi_endproc
+ 488              	.LFE36:
+ 489              		.size	main, .-main
+ 490              		.text
+ 491              	.Letext0:
+ 492              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 493              		.section	.debug_info,"",%progbits
+ 494              	.Ldebug_info0:
+ 495 0000 F8010000 		.4byte	0x1f8
+ 496 0004 0400     		.2byte	0x4
+ 497 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 498 000a 04       		.byte	0x4
+ 499 000b 01       		.uleb128 0x1
+ 500 000c 9D000000 		.4byte	.LASF31
+ 501 0010 01       		.byte	0x1
+ 502 0011 57010000 		.4byte	.LASF32
+ 503 0015 1F000000 		.4byte	.LASF33
+ 504 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 505 001d 00000000 		.4byte	0
+ 506 0021 00000000 		.4byte	.Ldebug_line0
+ 507 0025 02       		.uleb128 0x2
+ 508 0026 01       		.byte	0x1
+ 509 0027 06       		.byte	0x6
+ 510 0028 FE010000 		.4byte	.LASF0
+ 511 002c 02       		.uleb128 0x2
+ 512 002d 01       		.byte	0x1
+ 513 002e 08       		.byte	0x8
+ 514 002f 2B010000 		.4byte	.LASF1
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 14
+
+
+ 515 0033 02       		.uleb128 0x2
+ 516 0034 02       		.byte	0x2
+ 517 0035 05       		.byte	0x5
+ 518 0036 EB010000 		.4byte	.LASF2
+ 519 003a 02       		.uleb128 0x2
+ 520 003b 02       		.byte	0x2
+ 521 003c 07       		.byte	0x7
+ 522 003d 0C000000 		.4byte	.LASF3
+ 523 0041 02       		.uleb128 0x2
+ 524 0042 04       		.byte	0x4
+ 525 0043 05       		.byte	0x5
+ 526 0044 F5010000 		.4byte	.LASF4
+ 527 0048 02       		.uleb128 0x2
+ 528 0049 04       		.byte	0x4
+ 529 004a 07       		.byte	0x7
+ 530 004b 3F010000 		.4byte	.LASF5
+ 531 004f 02       		.uleb128 0x2
+ 532 0050 08       		.byte	0x8
+ 533 0051 05       		.byte	0x5
+ 534 0052 C1010000 		.4byte	.LASF6
+ 535 0056 02       		.uleb128 0x2
+ 536 0057 08       		.byte	0x8
+ 537 0058 07       		.byte	0x7
+ 538 0059 8C010000 		.4byte	.LASF7
+ 539 005d 03       		.uleb128 0x3
+ 540 005e 04       		.byte	0x4
+ 541 005f 05       		.byte	0x5
+ 542 0060 696E7400 		.ascii	"int\000"
+ 543 0064 02       		.uleb128 0x2
+ 544 0065 04       		.byte	0x4
+ 545 0066 07       		.byte	0x7
+ 546 0067 7F010000 		.4byte	.LASF8
+ 547 006b 04       		.uleb128 0x4
+ 548 006c 6C010000 		.4byte	.LASF9
+ 549 0070 02       		.byte	0x2
+ 550 0071 C2       		.byte	0xc2
+ 551 0072 3A000000 		.4byte	0x3a
+ 552 0076 04       		.uleb128 0x4
+ 553 0077 78010000 		.4byte	.LASF10
+ 554 007b 02       		.byte	0x2
+ 555 007c C3       		.byte	0xc3
+ 556 007d 48000000 		.4byte	0x48
+ 557 0081 04       		.uleb128 0x4
+ 558 0082 39010000 		.4byte	.LASF11
+ 559 0086 02       		.byte	0x2
+ 560 0087 C5       		.byte	0xc5
+ 561 0088 33000000 		.4byte	0x33
+ 562 008c 04       		.uleb128 0x4
+ 563 008d 51010000 		.4byte	.LASF12
+ 564 0091 02       		.byte	0x2
+ 565 0092 C6       		.byte	0xc6
+ 566 0093 41000000 		.4byte	0x41
+ 567 0097 02       		.uleb128 0x2
+ 568 0098 04       		.byte	0x4
+ 569 0099 04       		.byte	0x4
+ 570 009a 06000000 		.4byte	.LASF13
+ 571 009e 02       		.uleb128 0x2
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 15
+
+
+ 572 009f 08       		.byte	0x8
+ 573 00a0 04       		.byte	0x4
+ 574 00a1 6A000000 		.4byte	.LASF14
+ 575 00a5 02       		.uleb128 0x2
+ 576 00a6 01       		.byte	0x1
+ 577 00a7 08       		.byte	0x8
+ 578 00a8 CF010000 		.4byte	.LASF15
+ 579 00ac 05       		.uleb128 0x5
+ 580 00ad 00000000 		.4byte	.LASF16
+ 581 00b1 02       		.byte	0x2
+ 582 00b2 6D01     		.2byte	0x16d
+ 583 00b4 B8000000 		.4byte	0xb8
+ 584 00b8 06       		.uleb128 0x6
+ 585 00b9 76000000 		.4byte	0x76
+ 586 00bd 02       		.uleb128 0x2
+ 587 00be 04       		.byte	0x4
+ 588 00bf 07       		.byte	0x7
+ 589 00c0 B8010000 		.4byte	.LASF17
+ 590 00c4 07       		.uleb128 0x7
+ 591 00c5 71000000 		.4byte	.LASF18
+ 592 00c9 01       		.byte	0x1
+ 593 00ca 1E       		.byte	0x1e
+ 594 00cb 00000000 		.4byte	.LFB33
+ 595 00cf 0C000000 		.4byte	.LFE33-.LFB33
+ 596 00d3 01       		.uleb128 0x1
+ 597 00d4 9C       		.byte	0x9c
+ 598 00d5 07       		.uleb128 0x7
+ 599 00d6 19010000 		.4byte	.LASF19
+ 600 00da 01       		.byte	0x1
+ 601 00db 27       		.byte	0x27
+ 602 00dc 00000000 		.4byte	.LFB34
+ 603 00e0 34000000 		.4byte	.LFE34-.LFB34
+ 604 00e4 01       		.uleb128 0x1
+ 605 00e5 9C       		.byte	0x9c
+ 606 00e6 08       		.uleb128 0x8
+ 607 00e7 1D020000 		.4byte	.LASF22
+ 608 00eb 01       		.byte	0x1
+ 609 00ec 3B       		.byte	0x3b
+ 610 00ed 00000000 		.4byte	.LFB35
+ 611 00f1 A4000000 		.4byte	.LFE35-.LFB35
+ 612 00f5 01       		.uleb128 0x1
+ 613 00f6 9C       		.byte	0x9c
+ 614 00f7 18010000 		.4byte	0x118
+ 615 00fb 09       		.uleb128 0x9
+ 616 00fc 60010000 		.4byte	.LASF20
+ 617 0100 01       		.byte	0x1
+ 618 0101 3D       		.byte	0x3d
+ 619 0102 76000000 		.4byte	0x76
+ 620 0106 02       		.uleb128 0x2
+ 621 0107 91       		.byte	0x91
+ 622 0108 74       		.sleb128 -12
+ 623 0109 09       		.uleb128 0x9
+ 624 010a D4010000 		.4byte	.LASF21
+ 625 010e 01       		.byte	0x1
+ 626 010f 3E       		.byte	0x3e
+ 627 0110 76000000 		.4byte	0x76
+ 628 0114 02       		.uleb128 0x2
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 16
+
+
+ 629 0115 91       		.byte	0x91
+ 630 0116 70       		.sleb128 -16
+ 631 0117 00       		.byte	0
+ 632 0118 0A       		.uleb128 0xa
+ 633 0119 73010000 		.4byte	.LASF23
+ 634 011d 01       		.byte	0x1
+ 635 011e 61       		.byte	0x61
+ 636 011f 5D000000 		.4byte	0x5d
+ 637 0123 00000000 		.4byte	.LFB36
+ 638 0127 C4010000 		.4byte	.LFE36-.LFB36
+ 639 012b 01       		.uleb128 0x1
+ 640 012c 9C       		.byte	0x9c
+ 641 012d A3010000 		.4byte	0x1a3
+ 642 0131 0B       		.uleb128 0xb
+ 643 0132 72657300 		.ascii	"res\000"
+ 644 0136 01       		.byte	0x1
+ 645 0137 63       		.byte	0x63
+ 646 0138 81000000 		.4byte	0x81
+ 647 013c 02       		.uleb128 0x2
+ 648 013d 91       		.byte	0x91
+ 649 013e 6E       		.sleb128 -18
+ 650 013f 09       		.uleb128 0x9
+ 651 0140 A3010000 		.4byte	.LASF24
+ 652 0144 01       		.byte	0x1
+ 653 0145 63       		.byte	0x63
+ 654 0146 81000000 		.4byte	0x81
+ 655 014a 02       		.uleb128 0x2
+ 656 014b 91       		.byte	0x91
+ 657 014c 6C       		.sleb128 -20
+ 658 014d 0B       		.uleb128 0xb
+ 659 014e 53573100 		.ascii	"SW1\000"
+ 660 0152 01       		.byte	0x1
+ 661 0153 64       		.byte	0x64
+ 662 0154 A5000000 		.4byte	0xa5
+ 663 0158 02       		.uleb128 0x2
+ 664 0159 91       		.byte	0x91
+ 665 015a 63       		.sleb128 -29
+ 666 015b 0B       		.uleb128 0xb
+ 667 015c 53573200 		.ascii	"SW2\000"
+ 668 0160 01       		.byte	0x1
+ 669 0161 64       		.byte	0x64
+ 670 0162 A5000000 		.4byte	0xa5
+ 671 0166 02       		.uleb128 0x2
+ 672 0167 91       		.byte	0x91
+ 673 0168 62       		.sleb128 -30
+ 674 0169 0B       		.uleb128 0xb
+ 675 016a 53573300 		.ascii	"SW3\000"
+ 676 016e 01       		.byte	0x1
+ 677 016f 64       		.byte	0x64
+ 678 0170 A5000000 		.4byte	0xa5
+ 679 0174 02       		.uleb128 0x2
+ 680 0175 91       		.byte	0x91
+ 681 0176 6B       		.sleb128 -21
+ 682 0177 09       		.uleb128 0x9
+ 683 0178 91000000 		.4byte	.LASF25
+ 684 017c 01       		.byte	0x1
+ 685 017d 65       		.byte	0x65
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 17
+
+
+ 686 017e 8C000000 		.4byte	0x8c
+ 687 0182 02       		.uleb128 0x2
+ 688 0183 91       		.byte	0x91
+ 689 0184 64       		.sleb128 -28
+ 690 0185 09       		.uleb128 0x9
+ 691 0186 AF010000 		.4byte	.LASF26
+ 692 018a 01       		.byte	0x1
+ 693 018b 66       		.byte	0x66
+ 694 018c A3010000 		.4byte	0x1a3
+ 695 0190 03       		.uleb128 0x3
+ 696 0191 91       		.byte	0x91
+ 697 0192 E87D     		.sleb128 -280
+ 698 0194 09       		.uleb128 0x9
+ 699 0195 0A020000 		.4byte	.LASF27
+ 700 0199 01       		.byte	0x1
+ 701 019a 67       		.byte	0x67
+ 702 019b 81000000 		.4byte	0x81
+ 703 019f 02       		.uleb128 0x2
+ 704 01a0 91       		.byte	0x91
+ 705 01a1 68       		.sleb128 -24
+ 706 01a2 00       		.byte	0
+ 707 01a3 0C       		.uleb128 0xc
+ 708 01a4 A5000000 		.4byte	0xa5
+ 709 01a8 B3010000 		.4byte	0x1b3
+ 710 01ac 0D       		.uleb128 0xd
+ 711 01ad BD000000 		.4byte	0xbd
+ 712 01b1 F9       		.byte	0xf9
+ 713 01b2 00       		.byte	0
+ 714 01b3 0E       		.uleb128 0xe
+ 715 01b4 E1010000 		.4byte	.LASF28
+ 716 01b8 01       		.byte	0x1
+ 717 01b9 15       		.byte	0x15
+ 718 01ba B8000000 		.4byte	0xb8
+ 719 01be 05       		.uleb128 0x5
+ 720 01bf 03       		.byte	0x3
+ 721 01c0 00000000 		.4byte	dataReady
+ 722 01c4 0C       		.uleb128 0xc
+ 723 01c5 81000000 		.4byte	0x81
+ 724 01c9 D4010000 		.4byte	0x1d4
+ 725 01cd 0D       		.uleb128 0xd
+ 726 01ce BD000000 		.4byte	0xbd
+ 727 01d2 02       		.byte	0x2
+ 728 01d3 00       		.byte	0
+ 729 01d4 0E       		.uleb128 0xe
+ 730 01d5 A8010000 		.4byte	.LASF29
+ 731 01d9 01       		.byte	0x1
+ 732 01da 16       		.byte	0x16
+ 733 01db E5010000 		.4byte	0x1e5
+ 734 01df 05       		.uleb128 0x5
+ 735 01e0 03       		.byte	0x3
+ 736 01e1 00000000 		.4byte	result
+ 737 01e5 06       		.uleb128 0x6
+ 738 01e6 C4010000 		.4byte	0x1c4
+ 739 01ea 0E       		.uleb128 0xe
+ 740 01eb 85000000 		.4byte	.LASF30
+ 741 01ef 01       		.byte	0x1
+ 742 01f0 17       		.byte	0x17
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 18
+
+
+ 743 01f1 B8000000 		.4byte	0xb8
+ 744 01f5 05       		.uleb128 0x5
+ 745 01f6 03       		.byte	0x3
+ 746 01f7 00000000 		.4byte	timer_delay
+ 747 01fb 00       		.byte	0
+ 748              		.section	.debug_abbrev,"",%progbits
+ 749              	.Ldebug_abbrev0:
+ 750 0000 01       		.uleb128 0x1
+ 751 0001 11       		.uleb128 0x11
+ 752 0002 01       		.byte	0x1
+ 753 0003 25       		.uleb128 0x25
+ 754 0004 0E       		.uleb128 0xe
+ 755 0005 13       		.uleb128 0x13
+ 756 0006 0B       		.uleb128 0xb
+ 757 0007 03       		.uleb128 0x3
+ 758 0008 0E       		.uleb128 0xe
+ 759 0009 1B       		.uleb128 0x1b
+ 760 000a 0E       		.uleb128 0xe
+ 761 000b 55       		.uleb128 0x55
+ 762 000c 17       		.uleb128 0x17
+ 763 000d 11       		.uleb128 0x11
+ 764 000e 01       		.uleb128 0x1
+ 765 000f 10       		.uleb128 0x10
+ 766 0010 17       		.uleb128 0x17
+ 767 0011 00       		.byte	0
+ 768 0012 00       		.byte	0
+ 769 0013 02       		.uleb128 0x2
+ 770 0014 24       		.uleb128 0x24
+ 771 0015 00       		.byte	0
+ 772 0016 0B       		.uleb128 0xb
+ 773 0017 0B       		.uleb128 0xb
+ 774 0018 3E       		.uleb128 0x3e
+ 775 0019 0B       		.uleb128 0xb
+ 776 001a 03       		.uleb128 0x3
+ 777 001b 0E       		.uleb128 0xe
+ 778 001c 00       		.byte	0
+ 779 001d 00       		.byte	0
+ 780 001e 03       		.uleb128 0x3
+ 781 001f 24       		.uleb128 0x24
+ 782 0020 00       		.byte	0
+ 783 0021 0B       		.uleb128 0xb
+ 784 0022 0B       		.uleb128 0xb
+ 785 0023 3E       		.uleb128 0x3e
+ 786 0024 0B       		.uleb128 0xb
+ 787 0025 03       		.uleb128 0x3
+ 788 0026 08       		.uleb128 0x8
+ 789 0027 00       		.byte	0
+ 790 0028 00       		.byte	0
+ 791 0029 04       		.uleb128 0x4
+ 792 002a 16       		.uleb128 0x16
+ 793 002b 00       		.byte	0
+ 794 002c 03       		.uleb128 0x3
+ 795 002d 0E       		.uleb128 0xe
+ 796 002e 3A       		.uleb128 0x3a
+ 797 002f 0B       		.uleb128 0xb
+ 798 0030 3B       		.uleb128 0x3b
+ 799 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 19
+
+
+ 800 0032 49       		.uleb128 0x49
+ 801 0033 13       		.uleb128 0x13
+ 802 0034 00       		.byte	0
+ 803 0035 00       		.byte	0
+ 804 0036 05       		.uleb128 0x5
+ 805 0037 16       		.uleb128 0x16
+ 806 0038 00       		.byte	0
+ 807 0039 03       		.uleb128 0x3
+ 808 003a 0E       		.uleb128 0xe
+ 809 003b 3A       		.uleb128 0x3a
+ 810 003c 0B       		.uleb128 0xb
+ 811 003d 3B       		.uleb128 0x3b
+ 812 003e 05       		.uleb128 0x5
+ 813 003f 49       		.uleb128 0x49
+ 814 0040 13       		.uleb128 0x13
+ 815 0041 00       		.byte	0
+ 816 0042 00       		.byte	0
+ 817 0043 06       		.uleb128 0x6
+ 818 0044 35       		.uleb128 0x35
+ 819 0045 00       		.byte	0
+ 820 0046 49       		.uleb128 0x49
+ 821 0047 13       		.uleb128 0x13
+ 822 0048 00       		.byte	0
+ 823 0049 00       		.byte	0
+ 824 004a 07       		.uleb128 0x7
+ 825 004b 2E       		.uleb128 0x2e
+ 826 004c 00       		.byte	0
+ 827 004d 3F       		.uleb128 0x3f
+ 828 004e 19       		.uleb128 0x19
+ 829 004f 03       		.uleb128 0x3
+ 830 0050 0E       		.uleb128 0xe
+ 831 0051 3A       		.uleb128 0x3a
+ 832 0052 0B       		.uleb128 0xb
+ 833 0053 3B       		.uleb128 0x3b
+ 834 0054 0B       		.uleb128 0xb
+ 835 0055 27       		.uleb128 0x27
+ 836 0056 19       		.uleb128 0x19
+ 837 0057 11       		.uleb128 0x11
+ 838 0058 01       		.uleb128 0x1
+ 839 0059 12       		.uleb128 0x12
+ 840 005a 06       		.uleb128 0x6
+ 841 005b 40       		.uleb128 0x40
+ 842 005c 18       		.uleb128 0x18
+ 843 005d 9642     		.uleb128 0x2116
+ 844 005f 19       		.uleb128 0x19
+ 845 0060 00       		.byte	0
+ 846 0061 00       		.byte	0
+ 847 0062 08       		.uleb128 0x8
+ 848 0063 2E       		.uleb128 0x2e
+ 849 0064 01       		.byte	0x1
+ 850 0065 3F       		.uleb128 0x3f
+ 851 0066 19       		.uleb128 0x19
+ 852 0067 03       		.uleb128 0x3
+ 853 0068 0E       		.uleb128 0xe
+ 854 0069 3A       		.uleb128 0x3a
+ 855 006a 0B       		.uleb128 0xb
+ 856 006b 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 20
+
+
+ 857 006c 0B       		.uleb128 0xb
+ 858 006d 27       		.uleb128 0x27
+ 859 006e 19       		.uleb128 0x19
+ 860 006f 11       		.uleb128 0x11
+ 861 0070 01       		.uleb128 0x1
+ 862 0071 12       		.uleb128 0x12
+ 863 0072 06       		.uleb128 0x6
+ 864 0073 40       		.uleb128 0x40
+ 865 0074 18       		.uleb128 0x18
+ 866 0075 9642     		.uleb128 0x2116
+ 867 0077 19       		.uleb128 0x19
+ 868 0078 01       		.uleb128 0x1
+ 869 0079 13       		.uleb128 0x13
+ 870 007a 00       		.byte	0
+ 871 007b 00       		.byte	0
+ 872 007c 09       		.uleb128 0x9
+ 873 007d 34       		.uleb128 0x34
+ 874 007e 00       		.byte	0
+ 875 007f 03       		.uleb128 0x3
+ 876 0080 0E       		.uleb128 0xe
+ 877 0081 3A       		.uleb128 0x3a
+ 878 0082 0B       		.uleb128 0xb
+ 879 0083 3B       		.uleb128 0x3b
+ 880 0084 0B       		.uleb128 0xb
+ 881 0085 49       		.uleb128 0x49
+ 882 0086 13       		.uleb128 0x13
+ 883 0087 02       		.uleb128 0x2
+ 884 0088 18       		.uleb128 0x18
+ 885 0089 00       		.byte	0
+ 886 008a 00       		.byte	0
+ 887 008b 0A       		.uleb128 0xa
+ 888 008c 2E       		.uleb128 0x2e
+ 889 008d 01       		.byte	0x1
+ 890 008e 3F       		.uleb128 0x3f
+ 891 008f 19       		.uleb128 0x19
+ 892 0090 03       		.uleb128 0x3
+ 893 0091 0E       		.uleb128 0xe
+ 894 0092 3A       		.uleb128 0x3a
+ 895 0093 0B       		.uleb128 0xb
+ 896 0094 3B       		.uleb128 0x3b
+ 897 0095 0B       		.uleb128 0xb
+ 898 0096 49       		.uleb128 0x49
+ 899 0097 13       		.uleb128 0x13
+ 900 0098 11       		.uleb128 0x11
+ 901 0099 01       		.uleb128 0x1
+ 902 009a 12       		.uleb128 0x12
+ 903 009b 06       		.uleb128 0x6
+ 904 009c 40       		.uleb128 0x40
+ 905 009d 18       		.uleb128 0x18
+ 906 009e 9642     		.uleb128 0x2116
+ 907 00a0 19       		.uleb128 0x19
+ 908 00a1 01       		.uleb128 0x1
+ 909 00a2 13       		.uleb128 0x13
+ 910 00a3 00       		.byte	0
+ 911 00a4 00       		.byte	0
+ 912 00a5 0B       		.uleb128 0xb
+ 913 00a6 34       		.uleb128 0x34
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 21
+
+
+ 914 00a7 00       		.byte	0
+ 915 00a8 03       		.uleb128 0x3
+ 916 00a9 08       		.uleb128 0x8
+ 917 00aa 3A       		.uleb128 0x3a
+ 918 00ab 0B       		.uleb128 0xb
+ 919 00ac 3B       		.uleb128 0x3b
+ 920 00ad 0B       		.uleb128 0xb
+ 921 00ae 49       		.uleb128 0x49
+ 922 00af 13       		.uleb128 0x13
+ 923 00b0 02       		.uleb128 0x2
+ 924 00b1 18       		.uleb128 0x18
+ 925 00b2 00       		.byte	0
+ 926 00b3 00       		.byte	0
+ 927 00b4 0C       		.uleb128 0xc
+ 928 00b5 01       		.uleb128 0x1
+ 929 00b6 01       		.byte	0x1
+ 930 00b7 49       		.uleb128 0x49
+ 931 00b8 13       		.uleb128 0x13
+ 932 00b9 01       		.uleb128 0x1
+ 933 00ba 13       		.uleb128 0x13
+ 934 00bb 00       		.byte	0
+ 935 00bc 00       		.byte	0
+ 936 00bd 0D       		.uleb128 0xd
+ 937 00be 21       		.uleb128 0x21
+ 938 00bf 00       		.byte	0
+ 939 00c0 49       		.uleb128 0x49
+ 940 00c1 13       		.uleb128 0x13
+ 941 00c2 2F       		.uleb128 0x2f
+ 942 00c3 0B       		.uleb128 0xb
+ 943 00c4 00       		.byte	0
+ 944 00c5 00       		.byte	0
+ 945 00c6 0E       		.uleb128 0xe
+ 946 00c7 34       		.uleb128 0x34
+ 947 00c8 00       		.byte	0
+ 948 00c9 03       		.uleb128 0x3
+ 949 00ca 0E       		.uleb128 0xe
+ 950 00cb 3A       		.uleb128 0x3a
+ 951 00cc 0B       		.uleb128 0xb
+ 952 00cd 3B       		.uleb128 0x3b
+ 953 00ce 0B       		.uleb128 0xb
+ 954 00cf 49       		.uleb128 0x49
+ 955 00d0 13       		.uleb128 0x13
+ 956 00d1 3F       		.uleb128 0x3f
+ 957 00d2 19       		.uleb128 0x19
+ 958 00d3 02       		.uleb128 0x2
+ 959 00d4 18       		.uleb128 0x18
+ 960 00d5 00       		.byte	0
+ 961 00d6 00       		.byte	0
+ 962 00d7 00       		.byte	0
+ 963              		.section	.debug_aranges,"",%progbits
+ 964 0000 34000000 		.4byte	0x34
+ 965 0004 0200     		.2byte	0x2
+ 966 0006 00000000 		.4byte	.Ldebug_info0
+ 967 000a 04       		.byte	0x4
+ 968 000b 00       		.byte	0
+ 969 000c 0000     		.2byte	0
+ 970 000e 0000     		.2byte	0
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 22
+
+
+ 971 0010 00000000 		.4byte	.LFB33
+ 972 0014 0C000000 		.4byte	.LFE33-.LFB33
+ 973 0018 00000000 		.4byte	.LFB34
+ 974 001c 34000000 		.4byte	.LFE34-.LFB34
+ 975 0020 00000000 		.4byte	.LFB35
+ 976 0024 A4000000 		.4byte	.LFE35-.LFB35
+ 977 0028 00000000 		.4byte	.LFB36
+ 978 002c C4010000 		.4byte	.LFE36-.LFB36
+ 979 0030 00000000 		.4byte	0
+ 980 0034 00000000 		.4byte	0
+ 981              		.section	.debug_ranges,"",%progbits
+ 982              	.Ldebug_ranges0:
+ 983 0000 00000000 		.4byte	.LFB33
+ 984 0004 0C000000 		.4byte	.LFE33
+ 985 0008 00000000 		.4byte	.LFB34
+ 986 000c 34000000 		.4byte	.LFE34
+ 987 0010 00000000 		.4byte	.LFB35
+ 988 0014 A4000000 		.4byte	.LFE35
+ 989 0018 00000000 		.4byte	.LFB36
+ 990 001c C4010000 		.4byte	.LFE36
+ 991 0020 00000000 		.4byte	0
+ 992 0024 00000000 		.4byte	0
+ 993              		.section	.debug_line,"",%progbits
+ 994              	.Ldebug_line0:
+ 995 0000 C6000000 		.section	.debug_str,"MS",%progbits,1
+ 995      02004300 
+ 995      00000201 
+ 995      FB0E0D00 
+ 995      01010101 
+ 996              	.LASF16:
+ 997 0000 72656733 		.ascii	"reg32\000"
+ 997      3200
+ 998              	.LASF13:
+ 999 0006 666C6F61 		.ascii	"float\000"
+ 999      7400
+ 1000              	.LASF3:
+ 1001 000c 73686F72 		.ascii	"short unsigned int\000"
+ 1001      7420756E 
+ 1001      7369676E 
+ 1001      65642069 
+ 1001      6E7400
+ 1002              	.LASF33:
+ 1003 001f 443A5C63 		.ascii	"D:\\customers\\patternagents\\PSoC4_Workshop\\proje"
+ 1003      7573746F 
+ 1003      6D657273 
+ 1003      5C706174 
+ 1003      7465726E 
+ 1004 004e 6374735C 		.ascii	"cts\\LAB_FOUR\\LAB_FOUR.cydsn\000"
+ 1004      4C41425F 
+ 1004      464F5552 
+ 1004      5C4C4142 
+ 1004      5F464F55 
+ 1005              	.LASF14:
+ 1006 006a 646F7562 		.ascii	"double\000"
+ 1006      6C6500
+ 1007              	.LASF18:
+ 1008 0071 54494D45 		.ascii	"TIMER_1_IRQ_Handler\000"
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 23
+
+
+ 1008      525F315F 
+ 1008      4952515F 
+ 1008      48616E64 
+ 1008      6C657200 
+ 1009              	.LASF30:
+ 1010 0085 74696D65 		.ascii	"timer_delay\000"
+ 1010      725F6465 
+ 1010      6C617900 
+ 1011              	.LASF25:
+ 1012 0091 74656D70 		.ascii	"temperature\000"
+ 1012      65726174 
+ 1012      75726500 
+ 1013              	.LASF31:
+ 1014 009d 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1014      4320342E 
+ 1014      382E3420 
+ 1014      32303134 
+ 1014      30353236 
+ 1015 00d0 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 1015      20726576 
+ 1015      6973696F 
+ 1015      6E203231 
+ 1015      31333538 
+ 1016 0103 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 1016      66756E63 
+ 1016      74696F6E 
+ 1016      2D736563 
+ 1016      74696F6E 
+ 1017              	.LASF19:
+ 1018 0119 50574D5F 		.ascii	"PWM_1_IRQ_Handler\000"
+ 1018      315F4952 
+ 1018      515F4861 
+ 1018      6E646C65 
+ 1018      7200
+ 1019              	.LASF1:
+ 1020 012b 756E7369 		.ascii	"unsigned char\000"
+ 1020      676E6564 
+ 1020      20636861 
+ 1020      7200
+ 1021              	.LASF11:
+ 1022 0139 696E7431 		.ascii	"int16\000"
+ 1022      3600
+ 1023              	.LASF5:
+ 1024 013f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1024      20756E73 
+ 1024      69676E65 
+ 1024      6420696E 
+ 1024      7400
+ 1025              	.LASF12:
+ 1026 0151 696E7433 		.ascii	"int32\000"
+ 1026      3200
+ 1027              	.LASF32:
+ 1028 0157 2E5C6D61 		.ascii	".\\main.c\000"
+ 1028      696E2E63 
+ 1028      00
+ 1029              	.LASF20:
+ 1030 0160 696E7472 		.ascii	"intr_status\000"
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 24
+
+
+ 1030      5F737461 
+ 1030      74757300 
+ 1031              	.LASF9:
+ 1032 016c 75696E74 		.ascii	"uint16\000"
+ 1032      313600
+ 1033              	.LASF23:
+ 1034 0173 6D61696E 		.ascii	"main\000"
+ 1034      00
+ 1035              	.LASF10:
+ 1036 0178 75696E74 		.ascii	"uint32\000"
+ 1036      333200
+ 1037              	.LASF8:
+ 1038 017f 756E7369 		.ascii	"unsigned int\000"
+ 1038      676E6564 
+ 1038      20696E74 
+ 1038      00
+ 1039              	.LASF7:
+ 1040 018c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1040      206C6F6E 
+ 1040      6720756E 
+ 1040      7369676E 
+ 1040      65642069 
+ 1041              	.LASF24:
+ 1042 01a3 72657331 		.ascii	"res1\000"
+ 1042      00
+ 1043              	.LASF29:
+ 1044 01a8 72657375 		.ascii	"result\000"
+ 1044      6C7400
+ 1045              	.LASF26:
+ 1046 01af 75617274 		.ascii	"uartLine\000"
+ 1046      4C696E65 
+ 1046      00
+ 1047              	.LASF17:
+ 1048 01b8 73697A65 		.ascii	"sizetype\000"
+ 1048      74797065 
+ 1048      00
+ 1049              	.LASF6:
+ 1050 01c1 6C6F6E67 		.ascii	"long long int\000"
+ 1050      206C6F6E 
+ 1050      6720696E 
+ 1050      7400
+ 1051              	.LASF15:
+ 1052 01cf 63686172 		.ascii	"char\000"
+ 1052      00
+ 1053              	.LASF21:
+ 1054 01d4 72616E67 		.ascii	"range_status\000"
+ 1054      655F7374 
+ 1054      61747573 
+ 1054      00
+ 1055              	.LASF28:
+ 1056 01e1 64617461 		.ascii	"dataReady\000"
+ 1056      52656164 
+ 1056      7900
+ 1057              	.LASF2:
+ 1058 01eb 73686F72 		.ascii	"short int\000"
+ 1058      7420696E 
+ 1058      7400
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\ccaddu61.s 			page 25
+
+
+ 1059              	.LASF4:
+ 1060 01f5 6C6F6E67 		.ascii	"long int\000"
+ 1060      20696E74 
+ 1060      00
+ 1061              	.LASF0:
+ 1062 01fe 7369676E 		.ascii	"signed char\000"
+ 1062      65642063 
+ 1062      68617200 
+ 1063              	.LASF27:
+ 1064 020a 41444343 		.ascii	"ADCCountsCorrected\000"
+ 1064      6F756E74 
+ 1064      73436F72 
+ 1064      72656374 
+ 1064      656400
+ 1065              	.LASF22:
+ 1066 021d 4144435F 		.ascii	"ADC_1_IRQ_Handler\000"
+ 1066      315F4952 
+ 1066      515F4861 
+ 1066      6E646C65 
+ 1066      7200
+ 1067              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

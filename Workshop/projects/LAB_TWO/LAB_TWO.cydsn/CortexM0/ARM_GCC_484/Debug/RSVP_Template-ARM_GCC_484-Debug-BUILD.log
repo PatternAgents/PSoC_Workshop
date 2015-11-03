@@ -1,0 +1,11 @@
+--------------- Build Started: 03/08/2015 13:53:03 Project: RSVP_Template, Configuration: ARM GCC 4.8.4 Debug ---------------
+The code generation step is up to date.
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\main.c -o .\CortexM0\ARM_GCC_484\Debug\main.o
+arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_484\Debug\RSVP_Template.a .\CortexM0\ARM_GCC_484\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_484\Debug\Bootloadable.o .\CortexM0\ARM_GCC_484\Debug\P1_6.o .\CortexM0\ARM_GCC_484\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_484\Debug\CyFlash.o .\CortexM0\ARM_GCC_484\Debug\CyLib.o .\CortexM0\ARM_GCC_484\Debug\cyPm.o .\CortexM0\ARM_GCC_484\Debug\cyutils.o .\CortexM0\ARM_GCC_484\Debug\P0_7.o .\CortexM0\ARM_GCC_484\Debug\ResetISR.o .\CortexM0\ARM_GCC_484\Debug\Clock_12Khz.o .\CortexM0\ARM_GCC_484\Debug\ResetTimer.o .\CortexM0\ARM_GCC_484\Debug\ResetTimer_PM.o .\CortexM0\ARM_GCC_484\Debug\P0_6.o
+arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_484\Debug\RSVP_Template.a
+arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM0\ARM_GCC_484\Debug\RSVP_Template.elf .\CortexM0\ARM_GCC_484\Debug\main.o .\CortexM0\ARM_GCC_484\Debug\cybootloader.o .\CortexM0\ARM_GCC_484\Debug\cymetadata.o .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o .\CortexM0\ARM_GCC_484\Debug\RSVP_Template.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_484\Debug\CyComponentLibrary.a" -mthumb -march=armv6-m -Wl,-Map,.\CortexM0\ARM_GCC_484\Debug/RSVP_Template.map -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs "-u _printf_float" "" -Wl,--gc-sections -Wl,--end-group
+cyelftool.exe -B D:\PSoC4_Workshop\projects\RSVP_Template\RSVP_Template_Min\RSVP_Template.cydsn\CortexM0\ARM_GCC_484\Debug\RSVP_Template.elf --flash_row_size 128 --flash_size 32768 --flash_array_size 32768
+cyelftool.exe -S D:\PSoC4_Workshop\projects\RSVP_Template\RSVP_Template_Min\RSVP_Template.cydsn\CortexM0\ARM_GCC_484\Debug\RSVP_Template.elf
+Flash used: 6568 of 32768 bytes (20.0 %). Bootloader: 4224 bytes. Application: 2344 bytes
+SRAM used: 1536 of 4096 bytes (37.5 %). Stack: 1024 bytes. Heap: 256 bytes.
+--------------- Build Succeeded: 03/08/2015 13:53:04 ---------------

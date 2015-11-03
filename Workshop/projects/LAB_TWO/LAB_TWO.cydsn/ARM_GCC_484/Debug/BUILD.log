@@ -1,0 +1,11 @@
+--------------- Build Started: 08/26/2015 14:24:16 Project: LAB_TWO, Configuration: ARM GCC 4.8.4 Debug ---------------
+The code generation step is up to date.
+The compile step is up to date, no work needs to be done.
+arm-none-eabi-ar.exe -rs .\ARM_GCC_484\Debug\LAB_TWO.a .\ARM_GCC_484\Debug\cyfitter_cfg.o .\ARM_GCC_484\Debug\Bootloadable.o .\ARM_GCC_484\Debug\P1_6.o .\ARM_GCC_484\Debug\CyBootAsmGnu.o .\ARM_GCC_484\Debug\CyFlash.o .\ARM_GCC_484\Debug\CyLib.o .\ARM_GCC_484\Debug\cyPm.o .\ARM_GCC_484\Debug\cyutils.o .\ARM_GCC_484\Debug\P0_7.o .\ARM_GCC_484\Debug\P0_6.o .\ARM_GCC_484\Debug\TIMER_1_IRQ.o .\ARM_GCC_484\Debug\CLK_TIMER_1.o .\ARM_GCC_484\Debug\TIMER_1.o .\ARM_GCC_484\Debug\TIMER_1_PM.o .\ARM_GCC_484\Debug\PWM_1.o .\ARM_GCC_484\Debug\PWM_1_PM.o .\ARM_GCC_484\Debug\PWM_2.o .\ARM_GCC_484\Debug\PWM_2_PM.o .\ARM_GCC_484\Debug\USER_SW_1_IRQ.o .\ARM_GCC_484\Debug\CLK_BREATHE.o .\ARM_GCC_484\Debug\CyLFClk.o
+arm-none-eabi-ar.exe: creating .\ARM_GCC_484\Debug\LAB_TWO.a
+arm-none-eabi-gcc.exe -Wl,--start-group -o .\ARM_GCC_484\Debug\LAB_TWO.elf .\ARM_GCC_484\Debug\main.o .\ARM_GCC_484\Debug\cybootloader.o .\ARM_GCC_484\Debug\cymetadata.o .\ARM_GCC_484\Debug\Cm0Start.o .\ARM_GCC_484\Debug\LAB_TWO.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_484\Debug\CyComponentLibrary.a" -mcpu=cortex-m0 -mthumb -g -ffunction-sections -O0 -Wl,-Map,.\ARM_GCC_484\Debug/LAB_TWO.map -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections -Wl,--end-group
+cyelftool.exe -B D:\patternagents\PSoC_Workshop\projects\LAB_TWO\LAB_TWO.cydsn\ARM_GCC_484\Debug\LAB_TWO.elf --flash_row_size 128 --flash_size 32768 --flash_array_size 32768
+cyelftool.exe -S D:\patternagents\PSoC_Workshop\projects\LAB_TWO\LAB_TWO.cydsn\ARM_GCC_484\Debug\LAB_TWO.elf
+Flash used: 8064 of 32768 bytes (24.6 %). Bootloader: 4608 bytes. Application: 3328 bytes. Metadata: 128 bytes.
+SRAM used: 1536 of 4096 bytes (37.5 %). Stack: 1024 bytes. Heap: 256 bytes.
+--------------- Build Succeeded: 08/26/2015 14:24:17 ---------------

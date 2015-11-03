@@ -1,0 +1,1728 @@
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"UART_UART_BOOT.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.UART_UartCyBtldrCommStart,"ax",%progbits
+  18              		.align	1
+  19              		.global	UART_UartCyBtldrCommStart
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	UART_UartCyBtldrCommStart, %function
+  23              	UART_UartCyBtldrCommStart:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\UART_UART_BOOT.c"
+   1:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * File Name: UART_UART_BOOT.c
+   3:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Version 3.0
+   4:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+   5:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Description:
+   6:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  This file provides the source code of the bootloader communication APIs
+   7:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  for the SCB Component UART mode.
+   8:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+   9:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Note:
+  10:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  11:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Copyright 2013-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  18:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** #include "UART_BOOT.h"
+  19:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** #include "UART_SPI_UART.h"
+  20:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  21:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** #if defined(CYDEV_BOOTLOADER_IO_COMP) && (UART_UART_BTLDR_COMM_ENABLED)
+  22:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  23:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  24:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommStart
+  25:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  26:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  27:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+  28:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Starts the UART component.
+  29:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  30:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+  31:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  32:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+  34:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  35:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  36:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  37:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** void UART_UartCyBtldrCommStart(void)
+  38:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  26              		.loc 1 38 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+  39:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_Start();
+  32              		.loc 1 39 0
+  33 0002 FFF7FEFF 		bl	UART_Start
+  34              	.LVL0:
+  40:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+  35              		.loc 1 40 0
+  36              		@ sp needed
+  37 0006 08BD     		pop	{r3, pc}
+  38              		.cfi_endproc
+  39              	.LFE0:
+  40              		.size	UART_UartCyBtldrCommStart, .-UART_UartCyBtldrCommStart
+  41              		.section	.text.UART_UartCyBtldrCommStop,"ax",%progbits
+  42              		.align	1
+  43              		.global	UART_UartCyBtldrCommStop
+  44              		.code	16
+  45              		.thumb_func
+  46              		.type	UART_UartCyBtldrCommStop, %function
+  47              	UART_UartCyBtldrCommStop:
+  48              	.LFB1:
+  41:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  42:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  43:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  44:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommStop
+  45:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  46:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  47:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+  48:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Disables the UART component.
+  49:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  50:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+  51:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  52:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  53:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+  54:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  55:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  56:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  57:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** void UART_UartCyBtldrCommStop(void)
+  58:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  49              		.loc 1 58 0
+  50              		.cfi_startproc
+  51 0000 08B5     		push	{r3, lr}
+  52              		.cfi_def_cfa_offset 8
+  53              		.cfi_offset 3, -8
+  54              		.cfi_offset 14, -4
+  59:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_Stop();
+  55              		.loc 1 59 0
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 3
+
+
+  56 0002 FFF7FEFF 		bl	UART_Stop
+  57              	.LVL1:
+  60:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+  58              		.loc 1 60 0
+  59              		@ sp needed
+  60 0006 08BD     		pop	{r3, pc}
+  61              		.cfi_endproc
+  62              	.LFE1:
+  63              		.size	UART_UartCyBtldrCommStop, .-UART_UartCyBtldrCommStop
+  64              		.section	.text.UART_UartCyBtldrCommReset,"ax",%progbits
+  65              		.align	1
+  66              		.global	UART_UartCyBtldrCommReset
+  67              		.code	16
+  68              		.thumb_func
+  69              		.type	UART_UartCyBtldrCommReset, %function
+  70              	UART_UartCyBtldrCommReset:
+  71              	.LFB2:
+  61:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  62:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  63:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  64:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommReset
+  65:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  66:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  67:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+  68:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Resets the receive and transmit communication buffers.
+  69:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  70:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+  71:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  72:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  73:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+  74:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  75:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  76:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  77:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** void UART_UartCyBtldrCommReset(void)
+  78:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  72              		.loc 1 78 0
+  73              		.cfi_startproc
+  74 0000 08B5     		push	{r3, lr}
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 3, -8
+  77              		.cfi_offset 14, -4
+  79:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     /* Clear RX and TX buffers */
+  80:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_SpiUartClearRxBuffer();
+  78              		.loc 1 80 0
+  79 0002 FFF7FEFF 		bl	UART_SpiUartClearRxBuffer
+  80              	.LVL2:
+  81:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_SpiUartClearTxBuffer();
+  82:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+  81              		.loc 1 82 0
+  82              		@ sp needed
+  81:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_SpiUartClearTxBuffer();
+  83              		.loc 1 81 0
+  84 0006 FFF7FEFF 		bl	UART_SpiUartClearTxBuffer
+  85              	.LVL3:
+  86              		.loc 1 82 0
+  87 000a 08BD     		pop	{r3, pc}
+  88              		.cfi_endproc
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 4
+
+
+  89              	.LFE2:
+  90              		.size	UART_UartCyBtldrCommReset, .-UART_UartCyBtldrCommReset
+  91              		.section	.text.UART_UartCyBtldrCommRead,"ax",%progbits
+  92              		.align	1
+  93              		.global	UART_UartCyBtldrCommRead
+  94              		.code	16
+  95              		.thumb_func
+  96              		.type	UART_UartCyBtldrCommRead, %function
+  97              	UART_UartCyBtldrCommRead:
+  98              	.LFB3:
+  83:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  84:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  85:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  86:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommRead
+  87:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  88:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  89:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+  90:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Allows the caller to read data from the bootloader host (the host writes the
+  91:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  data). The function handles polling to allow a block of data to be completely
+  92:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  received from the host device.
+  93:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  94:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+  95:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  pData:    Pointer to storage for the block of data to be read from the
+  96:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            bootloader host
+  97:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  size:     Number of bytes to be read.
+  98:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  count:    Pointer to the variable to write the number of bytes actually
+  99:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            read.
+ 100:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  timeOut:  Number of units in 10 ms to wait before returning because of a
+ 101:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            timeout.
+ 102:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 103:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+ 104:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Returns CYRET_SUCCESS if no problem was encountered or returns the value
+ 105:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  that best describes the problem. For more information refer to the
+ 106:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  "Return Codes" section of the System Reference Guide.
+ 107:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 108:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+ 109:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** cystatus UART_UartCyBtldrCommRead(uint8 pData[], uint16 size, uint16 * count, uint8 timeOut)
+ 110:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  99              		.loc 1 110 0
+ 100              		.cfi_startproc
+ 101              	.LVL4:
+ 102 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 103              		.cfi_def_cfa_offset 24
+ 104              		.cfi_offset 3, -24
+ 105              		.cfi_offset 4, -20
+ 106              		.cfi_offset 5, -16
+ 107              		.cfi_offset 6, -12
+ 108              		.cfi_offset 7, -8
+ 109              		.cfi_offset 14, -4
+ 110              		.loc 1 110 0
+ 111 0002 041C     		mov	r4, r0
+ 112 0004 0E1C     		mov	r6, r1
+ 113 0006 171C     		mov	r7, r2
+ 111:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     cystatus status;
+ 112:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     uint32 byteCount;
+ 113:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     uint32 timeoutMs;
+ 114:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     uint32 i;
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 5
+
+
+ 115:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 116:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     status = CYRET_BAD_PARAM;
+ 114              		.loc 1 116 0
+ 115 0008 0125     		mov	r5, #1
+ 117:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 118:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     if ((NULL != pData) && (size > 0u))
+ 116              		.loc 1 118 0
+ 117 000a 0028     		cmp	r0, #0
+ 118 000c 28D0     		beq	.L5
+ 119              		.loc 1 118 0 is_stmt 0 discriminator 1
+ 120 000e 0029     		cmp	r1, #0
+ 121 0010 26D0     		beq	.L5
+ 122              	.LVL5:
+ 119:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     {
+ 120:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         status = CYRET_TIMEOUT;
+ 121:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         timeoutMs = ((uint32) 10u * timeOut); /* Convert from 10mS check to 1mS checks */
+ 123              		.loc 1 121 0 is_stmt 1
+ 124 0012 0A25     		mov	r5, #10
+ 125 0014 5D43     		mul	r5, r3
+ 126              	.LVL6:
+ 127              	.L11:
+ 122:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 123:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         /* Wait with timeout 1mS for packet end */
+ 124:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         byteCount = 0u;
+ 125:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         do
+ 126:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 127:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             /* Check packet start */
+ 128:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             if (0u != UART_SpiUartGetRxBufferSize())
+ 128              		.loc 1 128 0
+ 129 0016 FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 130              	.LVL7:
+ 131 001a 0028     		cmp	r0, #0
+ 132 001c 10D0     		beq	.L6
+ 133              	.LVL8:
+ 134              	.L8:
+ 129:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             {
+ 130:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 /* Wait for end of packet */
+ 131:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 do
+ 132:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 {
+ 133:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                     byteCount = UART_SpiUartGetRxBufferSize();
+ 135              		.loc 1 133 0
+ 136 001e FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 137              	.LVL9:
+ 138 0022 051C     		mov	r5, r0
+ 139              	.LVL10:
+ 134:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                     CyDelayUs(UART_UART_BYTE_TO_BYTE);
+ 140              		.loc 1 134 0
+ 141 0024 AB20     		mov	r0, #171
+ 142              	.LVL11:
+ 143 0026 FFF7FEFF 		bl	CyDelayUs
+ 144              	.LVL12:
+ 135:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 }
+ 136:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 while (byteCount != UART_SpiUartGetRxBufferSize());
+ 145              		.loc 1 136 0
+ 146 002a FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 147              	.LVL13:
+ 148 002e 8542     		cmp	r5, r0
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 6
+
+
+ 149 0030 F5D1     		bne	.L8
+ 137:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 138:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 byteCount = UART_BYTES_TO_COPY(byteCount, size);
+ 150              		.loc 1 138 0
+ 151 0032 281E     		sub	r0, r5, #0
+ 152 0034 B042     		cmp	r0, r6
+ 153 0036 00D9     		bls	.L9
+ 154 0038 301C     		mov	r0, r6
+ 155              	.L9:
+ 156              	.LVL14:
+ 139:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 *count = (uint16) byteCount;
+ 157              		.loc 1 139 0
+ 158 003a 3880     		strh	r0, [r7]
+ 159              	.LVL15:
+ 140:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 status = CYRET_SUCCESS;
+ 160              		.loc 1 140 0
+ 161 003c 0025     		mov	r5, #0
+ 141:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 142:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 break;
+ 162              		.loc 1 142 0
+ 163 003e 07E0     		b	.L10
+ 164              	.LVL16:
+ 165              	.L6:
+ 143:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             }
+ 144:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 145:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             CyDelay(UART_WAIT_1_MS);
+ 166              		.loc 1 145 0
+ 167 0040 0120     		mov	r0, #1
+ 146:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             --timeoutMs;
+ 168              		.loc 1 146 0
+ 169 0042 013D     		sub	r5, r5, #1
+ 170              	.LVL17:
+ 145:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             CyDelay(UART_WAIT_1_MS);
+ 171              		.loc 1 145 0
+ 172 0044 FFF7FEFF 		bl	CyDelay
+ 173              	.LVL18:
+ 147:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         }
+ 148:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         while (0u != timeoutMs);
+ 174              		.loc 1 148 0
+ 175 0048 002D     		cmp	r5, #0
+ 176 004a E4D1     		bne	.L11
+ 124:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         byteCount = 0u;
+ 177              		.loc 1 124 0
+ 178 004c 281C     		mov	r0, r5
+ 120:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         status = CYRET_TIMEOUT;
+ 179              		.loc 1 120 0
+ 180 004e 1025     		mov	r5, #16
+ 181              	.LVL19:
+ 182              	.L10:
+ 183 0050 2618     		add	r6, r4, r0
+ 184              	.LVL20:
+ 185              	.L12:
+ 149:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 150:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         /* Get data from RX buffer into bootloader buffer */
+ 151:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         for (i = 0u; i < byteCount; ++i)
+ 186              		.loc 1 151 0 discriminator 1
+ 187 0052 B442     		cmp	r4, r6
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 7
+
+
+ 188 0054 04D0     		beq	.L5
+ 152:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 153:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             pData[i] = (uint8) UART_SpiUartReadRxData();
+ 189              		.loc 1 153 0 discriminator 2
+ 190 0056 FFF7FEFF 		bl	UART_SpiUartReadRxData
+ 191              	.LVL21:
+ 192 005a 2070     		strb	r0, [r4]
+ 193              	.LVL22:
+ 194 005c 0134     		add	r4, r4, #1
+ 195              	.LVL23:
+ 196 005e F8E7     		b	.L12
+ 197              	.LVL24:
+ 198              	.L5:
+ 154:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         }
+ 155:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     }
+ 156:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 157:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     return (status);
+ 158:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+ 199              		.loc 1 158 0
+ 200 0060 281C     		mov	r0, r5
+ 201              		@ sp needed
+ 202              	.LVL25:
+ 203              	.LVL26:
+ 204 0062 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 205              		.cfi_endproc
+ 206              	.LFE3:
+ 207              		.size	UART_UartCyBtldrCommRead, .-UART_UartCyBtldrCommRead
+ 208              		.section	.text.UART_UartCyBtldrCommWrite,"ax",%progbits
+ 209              		.align	1
+ 210              		.global	UART_UartCyBtldrCommWrite
+ 211              		.code	16
+ 212              		.thumb_func
+ 213              		.type	UART_UartCyBtldrCommWrite, %function
+ 214              	UART_UartCyBtldrCommWrite:
+ 215              	.LFB4:
+ 159:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 160:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 161:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+ 162:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommWrite
+ 163:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+ 164:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 165:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+ 166:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Allows the caller to write data to the bootloader host (the host reads the
+ 167:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  data). The function does not use timeout and returns after data has been
+ 168:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  copied into the transmit buffer. The data transmission starts immediately
+ 169:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  after the first data element is written into the buffer and lasts until all
+ 170:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  data elements from the buffer are sent.
+ 171:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 172:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+ 173:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  pData:    Pointer to the block of data to be written to the bootloader host.
+ 174:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  size:     Number of bytes to be written.
+ 175:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  count:    Pointer to the variable to write the number of bytes actually
+ 176:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            written.
+ 177:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  timeOut:  The timeout is not used by this function. The function returns
+ 178:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            as soon as data is copied into the transmit buffer.
+ 179:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 180:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 8
+
+
+ 181:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Returns CYRET_SUCCESS if no problem was encountered or returns the value
+ 182:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  that best describes the problem. For more information refer to the
+ 183:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  "Return Codes" section of the System Reference Guide.
+ 184:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 185:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+ 186:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** cystatus UART_UartCyBtldrCommWrite(const uint8 pData[], uint16 size, uint16 * count, uint8 timeOut)
+ 187:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+ 216              		.loc 1 187 0
+ 217              		.cfi_startproc
+ 218              	.LVL27:
+ 219 0000 38B5     		push	{r3, r4, r5, lr}
+ 220              		.cfi_def_cfa_offset 16
+ 221              		.cfi_offset 3, -16
+ 222              		.cfi_offset 4, -12
+ 223              		.cfi_offset 5, -8
+ 224              		.cfi_offset 14, -4
+ 225              		.loc 1 187 0
+ 226 0002 0C1C     		mov	r4, r1
+ 227 0004 151C     		mov	r5, r2
+ 188:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     cystatus status;
+ 189:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 190:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     status = CYRET_BAD_PARAM;
+ 228              		.loc 1 190 0
+ 229 0006 0123     		mov	r3, #1
+ 230              	.LVL28:
+ 191:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 192:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     if ((NULL != pData) && (size > 0u))
+ 231              		.loc 1 192 0
+ 232 0008 0028     		cmp	r0, #0
+ 233 000a 05D0     		beq	.L20
+ 234              		.loc 1 192 0 is_stmt 0 discriminator 1
+ 235 000c 0029     		cmp	r1, #0
+ 236 000e 03D0     		beq	.L20
+ 193:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     {
+ 194:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         /* Transmit data. This function does not wait until data is sent. */
+ 195:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         UART_SpiUartPutArray(pData, (uint32) size);
+ 237              		.loc 1 195 0 is_stmt 1
+ 238 0010 FFF7FEFF 		bl	UART_SpiUartPutArray
+ 239              	.LVL29:
+ 196:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 197:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         *count = size;
+ 240              		.loc 1 197 0
+ 241 0014 2C80     		strh	r4, [r5]
+ 242              	.LVL30:
+ 198:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         status = CYRET_SUCCESS;
+ 243              		.loc 1 198 0
+ 244 0016 0023     		mov	r3, #0
+ 245              	.LVL31:
+ 246              	.L20:
+ 199:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 200:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         if (0u != timeOut)
+ 201:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 202:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             /* Suppress compiler warning */
+ 203:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         }
+ 204:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     }
+ 205:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 206:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     return (status);
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 9
+
+
+ 207:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+ 247              		.loc 1 207 0
+ 248 0018 181C     		mov	r0, r3
+ 249              		@ sp needed
+ 250              	.LVL32:
+ 251 001a 38BD     		pop	{r3, r4, r5, pc}
+ 252              		.cfi_endproc
+ 253              	.LFE4:
+ 254              		.size	UART_UartCyBtldrCommWrite, .-UART_UartCyBtldrCommWrite
+ 255              		.text
+ 256              	.Letext0:
+ 257              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 258              		.file 3 ".\\Generated_Source\\PSoC4\\UART.h"
+ 259              		.file 4 ".\\Generated_Source\\PSoC4\\UART_SPI_UART.h"
+ 260              		.file 5 "Generated_Source\\PSoC4/CyLib.h"
+ 261              		.section	.debug_info,"",%progbits
+ 262              	.Ldebug_info0:
+ 263 0000 F0020000 		.4byte	0x2f0
+ 264 0004 0400     		.2byte	0x4
+ 265 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 266 000a 04       		.byte	0x4
+ 267 000b 01       		.uleb128 0x1
+ 268 000c 8C000000 		.4byte	.LASF37
+ 269 0010 01       		.byte	0x1
+ 270 0011 32020000 		.4byte	.LASF38
+ 271 0015 2C000000 		.4byte	.LASF39
+ 272 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 273 001d 00000000 		.4byte	0
+ 274 0021 00000000 		.4byte	.Ldebug_line0
+ 275 0025 02       		.uleb128 0x2
+ 276 0026 01       		.byte	0x1
+ 277 0027 06       		.byte	0x6
+ 278 0028 DC020000 		.4byte	.LASF0
+ 279 002c 02       		.uleb128 0x2
+ 280 002d 01       		.byte	0x1
+ 281 002e 08       		.byte	0x8
+ 282 002f 5A010000 		.4byte	.LASF1
+ 283 0033 02       		.uleb128 0x2
+ 284 0034 02       		.byte	0x2
+ 285 0035 05       		.byte	0x5
+ 286 0036 5C020000 		.4byte	.LASF2
+ 287 003a 02       		.uleb128 0x2
+ 288 003b 02       		.byte	0x2
+ 289 003c 07       		.byte	0x7
+ 290 003d 19000000 		.4byte	.LASF3
+ 291 0041 02       		.uleb128 0x2
+ 292 0042 04       		.byte	0x4
+ 293 0043 05       		.byte	0x5
+ 294 0044 B9020000 		.4byte	.LASF4
+ 295 0048 02       		.uleb128 0x2
+ 296 0049 04       		.byte	0x4
+ 297 004a 07       		.byte	0x7
+ 298 004b 2D010000 		.4byte	.LASF5
+ 299 004f 02       		.uleb128 0x2
+ 300 0050 08       		.byte	0x8
+ 301 0051 05       		.byte	0x5
+ 302 0052 15020000 		.4byte	.LASF6
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 10
+
+
+ 303 0056 02       		.uleb128 0x2
+ 304 0057 08       		.byte	0x8
+ 305 0058 07       		.byte	0x7
+ 306 0059 D3010000 		.4byte	.LASF7
+ 307 005d 03       		.uleb128 0x3
+ 308 005e 04       		.byte	0x4
+ 309 005f 05       		.byte	0x5
+ 310 0060 696E7400 		.ascii	"int\000"
+ 311 0064 02       		.uleb128 0x2
+ 312 0065 04       		.byte	0x4
+ 313 0066 07       		.byte	0x7
+ 314 0067 C6010000 		.4byte	.LASF8
+ 315 006b 04       		.uleb128 0x4
+ 316 006c 3F010000 		.4byte	.LASF9
+ 317 0070 02       		.byte	0x2
+ 318 0071 C1       		.byte	0xc1
+ 319 0072 2C000000 		.4byte	0x2c
+ 320 0076 04       		.uleb128 0x4
+ 321 0077 89010000 		.4byte	.LASF10
+ 322 007b 02       		.byte	0x2
+ 323 007c C2       		.byte	0xc2
+ 324 007d 3A000000 		.4byte	0x3a
+ 325 0081 04       		.uleb128 0x4
+ 326 0082 90010000 		.4byte	.LASF11
+ 327 0086 02       		.byte	0x2
+ 328 0087 C3       		.byte	0xc3
+ 329 0088 48000000 		.4byte	0x48
+ 330 008c 02       		.uleb128 0x2
+ 331 008d 04       		.byte	0x4
+ 332 008e 04       		.byte	0x4
+ 333 008f 08010000 		.4byte	.LASF12
+ 334 0093 02       		.uleb128 0x2
+ 335 0094 08       		.byte	0x8
+ 336 0095 04       		.byte	0x4
+ 337 0096 82010000 		.4byte	.LASF13
+ 338 009a 02       		.uleb128 0x2
+ 339 009b 01       		.byte	0x1
+ 340 009c 08       		.byte	0x8
+ 341 009d 2D020000 		.4byte	.LASF14
+ 342 00a1 05       		.uleb128 0x5
+ 343 00a2 0A000000 		.4byte	.LASF15
+ 344 00a6 02       		.byte	0x2
+ 345 00a7 6301     		.2byte	0x163
+ 346 00a9 48000000 		.4byte	0x48
+ 347 00ad 02       		.uleb128 0x2
+ 348 00ae 04       		.byte	0x4
+ 349 00af 07       		.byte	0x7
+ 350 00b0 0C020000 		.4byte	.LASF16
+ 351 00b4 06       		.uleb128 0x6
+ 352 00b5 04       		.byte	0x4
+ 353 00b6 6B000000 		.4byte	0x6b
+ 354 00ba 07       		.uleb128 0x7
+ 355 00bb 68010000 		.4byte	.LASF17
+ 356 00bf 01       		.byte	0x1
+ 357 00c0 25       		.byte	0x25
+ 358 00c1 00000000 		.4byte	.LFB0
+ 359 00c5 08000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 11
+
+
+ 360 00c9 01       		.uleb128 0x1
+ 361 00ca 9C       		.byte	0x9c
+ 362 00cb D9000000 		.4byte	0xd9
+ 363 00cf 08       		.uleb128 0x8
+ 364 00d0 06000000 		.4byte	.LVL0
+ 365 00d4 88020000 		.4byte	0x288
+ 366 00d8 00       		.byte	0
+ 367 00d9 07       		.uleb128 0x7
+ 368 00da 89020000 		.4byte	.LASF18
+ 369 00de 01       		.byte	0x1
+ 370 00df 39       		.byte	0x39
+ 371 00e0 00000000 		.4byte	.LFB1
+ 372 00e4 08000000 		.4byte	.LFE1-.LFB1
+ 373 00e8 01       		.uleb128 0x1
+ 374 00e9 9C       		.byte	0x9c
+ 375 00ea F8000000 		.4byte	0xf8
+ 376 00ee 08       		.uleb128 0x8
+ 377 00ef 06000000 		.4byte	.LVL1
+ 378 00f3 8F020000 		.4byte	0x28f
+ 379 00f7 00       		.byte	0
+ 380 00f8 07       		.uleb128 0x7
+ 381 00f9 13010000 		.4byte	.LASF19
+ 382 00fd 01       		.byte	0x1
+ 383 00fe 4D       		.byte	0x4d
+ 384 00ff 00000000 		.4byte	.LFB2
+ 385 0103 0C000000 		.4byte	.LFE2-.LFB2
+ 386 0107 01       		.uleb128 0x1
+ 387 0108 9C       		.byte	0x9c
+ 388 0109 20010000 		.4byte	0x120
+ 389 010d 08       		.uleb128 0x8
+ 390 010e 06000000 		.4byte	.LVL2
+ 391 0112 96020000 		.4byte	0x296
+ 392 0116 08       		.uleb128 0x8
+ 393 0117 0A000000 		.4byte	.LVL3
+ 394 011b 9E020000 		.4byte	0x29e
+ 395 011f 00       		.byte	0
+ 396 0120 09       		.uleb128 0x9
+ 397 0121 70020000 		.4byte	.LASF27
+ 398 0125 01       		.byte	0x1
+ 399 0126 6D       		.byte	0x6d
+ 400 0127 A1000000 		.4byte	0xa1
+ 401 012b 00000000 		.4byte	.LFB3
+ 402 012f 64000000 		.4byte	.LFE3-.LFB3
+ 403 0133 01       		.uleb128 0x1
+ 404 0134 9C       		.byte	0x9c
+ 405 0135 FB010000 		.4byte	0x1fb
+ 406 0139 0A       		.uleb128 0xa
+ 407 013a 86000000 		.4byte	.LASF20
+ 408 013e 01       		.byte	0x1
+ 409 013f 6D       		.byte	0x6d
+ 410 0140 B4000000 		.4byte	0xb4
+ 411 0144 00000000 		.4byte	.LLST0
+ 412 0148 0A       		.uleb128 0xa
+ 413 0149 0E010000 		.4byte	.LASF21
+ 414 014d 01       		.byte	0x1
+ 415 014e 6D       		.byte	0x6d
+ 416 014f 76000000 		.4byte	0x76
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 12
+
+
+ 417 0153 2C000000 		.4byte	.LLST1
+ 418 0157 0A       		.uleb128 0xa
+ 419 0158 13000000 		.4byte	.LASF22
+ 420 015c 01       		.byte	0x1
+ 421 015d 6D       		.byte	0x6d
+ 422 015e FB010000 		.4byte	0x1fb
+ 423 0162 4D000000 		.4byte	.LLST2
+ 424 0166 0A       		.uleb128 0xa
+ 425 0167 04020000 		.4byte	.LASF23
+ 426 016b 01       		.byte	0x1
+ 427 016c 6D       		.byte	0x6d
+ 428 016d 6B000000 		.4byte	0x6b
+ 429 0171 79000000 		.4byte	.LLST3
+ 430 0175 0B       		.uleb128 0xb
+ 431 0176 7F000000 		.4byte	.LASF24
+ 432 017a 01       		.byte	0x1
+ 433 017b 6F       		.byte	0x6f
+ 434 017c A1000000 		.4byte	0xa1
+ 435 0180 9A000000 		.4byte	.LLST4
+ 436 0184 0B       		.uleb128 0xb
+ 437 0185 50010000 		.4byte	.LASF25
+ 438 0189 01       		.byte	0x1
+ 439 018a 70       		.byte	0x70
+ 440 018b 81000000 		.4byte	0x81
+ 441 018f E8000000 		.4byte	.LLST5
+ 442 0193 0B       		.uleb128 0xb
+ 443 0194 00000000 		.4byte	.LASF26
+ 444 0198 01       		.byte	0x1
+ 445 0199 71       		.byte	0x71
+ 446 019a 81000000 		.4byte	0x81
+ 447 019e 34010000 		.4byte	.LLST6
+ 448 01a2 0C       		.uleb128 0xc
+ 449 01a3 6900     		.ascii	"i\000"
+ 450 01a5 01       		.byte	0x1
+ 451 01a6 72       		.byte	0x72
+ 452 01a7 81000000 		.4byte	0x81
+ 453 01ab 6A010000 		.4byte	.LLST7
+ 454 01af 08       		.uleb128 0x8
+ 455 01b0 1A000000 		.4byte	.LVL7
+ 456 01b4 A6020000 		.4byte	0x2a6
+ 457 01b8 08       		.uleb128 0x8
+ 458 01b9 22000000 		.4byte	.LVL9
+ 459 01bd A6020000 		.4byte	0x2a6
+ 460 01c1 0D       		.uleb128 0xd
+ 461 01c2 2A000000 		.4byte	.LVL12
+ 462 01c6 B2020000 		.4byte	0x2b2
+ 463 01ca D5010000 		.4byte	0x1d5
+ 464 01ce 0E       		.uleb128 0xe
+ 465 01cf 01       		.uleb128 0x1
+ 466 01d0 50       		.byte	0x50
+ 467 01d1 02       		.uleb128 0x2
+ 468 01d2 08       		.byte	0x8
+ 469 01d3 AB       		.byte	0xab
+ 470 01d4 00       		.byte	0
+ 471 01d5 08       		.uleb128 0x8
+ 472 01d6 2E000000 		.4byte	.LVL13
+ 473 01da A6020000 		.4byte	0x2a6
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 13
+
+
+ 474 01de 0D       		.uleb128 0xd
+ 475 01df 48000000 		.4byte	.LVL18
+ 476 01e3 C3020000 		.4byte	0x2c3
+ 477 01e7 F1010000 		.4byte	0x1f1
+ 478 01eb 0E       		.uleb128 0xe
+ 479 01ec 01       		.uleb128 0x1
+ 480 01ed 50       		.byte	0x50
+ 481 01ee 01       		.uleb128 0x1
+ 482 01ef 31       		.byte	0x31
+ 483 01f0 00       		.byte	0
+ 484 01f1 08       		.uleb128 0x8
+ 485 01f2 5A000000 		.4byte	.LVL21
+ 486 01f6 D4020000 		.4byte	0x2d4
+ 487 01fa 00       		.byte	0
+ 488 01fb 06       		.uleb128 0x6
+ 489 01fc 04       		.byte	0x4
+ 490 01fd 76000000 		.4byte	0x76
+ 491 0201 09       		.uleb128 0x9
+ 492 0202 EA010000 		.4byte	.LASF28
+ 493 0206 01       		.byte	0x1
+ 494 0207 BA       		.byte	0xba
+ 495 0208 A1000000 		.4byte	0xa1
+ 496 020c 00000000 		.4byte	.LFB4
+ 497 0210 1C000000 		.4byte	.LFE4-.LFB4
+ 498 0214 01       		.uleb128 0x1
+ 499 0215 9C       		.byte	0x9c
+ 500 0216 7D020000 		.4byte	0x27d
+ 501 021a 0A       		.uleb128 0xa
+ 502 021b 86000000 		.4byte	.LASF20
+ 503 021f 01       		.byte	0x1
+ 504 0220 BA       		.byte	0xba
+ 505 0221 7D020000 		.4byte	0x27d
+ 506 0225 B3010000 		.4byte	.LLST8
+ 507 0229 0A       		.uleb128 0xa
+ 508 022a 0E010000 		.4byte	.LASF21
+ 509 022e 01       		.byte	0x1
+ 510 022f BA       		.byte	0xba
+ 511 0230 76000000 		.4byte	0x76
+ 512 0234 D4010000 		.4byte	.LLST9
+ 513 0238 0A       		.uleb128 0xa
+ 514 0239 13000000 		.4byte	.LASF22
+ 515 023d 01       		.byte	0x1
+ 516 023e BA       		.byte	0xba
+ 517 023f FB010000 		.4byte	0x1fb
+ 518 0243 F5010000 		.4byte	.LLST10
+ 519 0247 0A       		.uleb128 0xa
+ 520 0248 04020000 		.4byte	.LASF23
+ 521 024c 01       		.byte	0x1
+ 522 024d BA       		.byte	0xba
+ 523 024e 6B000000 		.4byte	0x6b
+ 524 0252 21020000 		.4byte	.LLST11
+ 525 0256 0B       		.uleb128 0xb
+ 526 0257 7F000000 		.4byte	.LASF24
+ 527 025b 01       		.byte	0x1
+ 528 025c BC       		.byte	0xbc
+ 529 025d A1000000 		.4byte	0xa1
+ 530 0261 42020000 		.4byte	.LLST12
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 14
+
+
+ 531 0265 0F       		.uleb128 0xf
+ 532 0266 14000000 		.4byte	.LVL29
+ 533 026a E0020000 		.4byte	0x2e0
+ 534 026e 0E       		.uleb128 0xe
+ 535 026f 01       		.uleb128 0x1
+ 536 0270 51       		.byte	0x51
+ 537 0271 02       		.uleb128 0x2
+ 538 0272 74       		.byte	0x74
+ 539 0273 00       		.sleb128 0
+ 540 0274 0E       		.uleb128 0xe
+ 541 0275 01       		.uleb128 0x1
+ 542 0276 50       		.byte	0x50
+ 543 0277 03       		.uleb128 0x3
+ 544 0278 F3       		.byte	0xf3
+ 545 0279 01       		.uleb128 0x1
+ 546 027a 50       		.byte	0x50
+ 547 027b 00       		.byte	0
+ 548 027c 00       		.byte	0
+ 549 027d 06       		.uleb128 0x6
+ 550 027e 04       		.byte	0x4
+ 551 027f 83020000 		.4byte	0x283
+ 552 0283 10       		.uleb128 0x10
+ 553 0284 6B000000 		.4byte	0x6b
+ 554 0288 11       		.uleb128 0x11
+ 555 0289 45010000 		.4byte	.LASF29
+ 556 028d 03       		.byte	0x3
+ 557 028e 68       		.byte	0x68
+ 558 028f 11       		.uleb128 0x11
+ 559 0290 66020000 		.4byte	.LASF30
+ 560 0294 03       		.byte	0x3
+ 561 0295 69       		.byte	0x69
+ 562 0296 12       		.uleb128 0x12
+ 563 0297 C2020000 		.4byte	.LASF31
+ 564 029b 04       		.byte	0x4
+ 565 029c 8701     		.2byte	0x187
+ 566 029e 12       		.uleb128 0x12
+ 567 029f 97010000 		.4byte	.LASF32
+ 568 02a3 04       		.byte	0x4
+ 569 02a4 8F01     		.2byte	0x18f
+ 570 02a6 13       		.uleb128 0x13
+ 571 02a7 E8020000 		.4byte	.LASF35
+ 572 02ab 04       		.byte	0x4
+ 573 02ac 8601     		.2byte	0x186
+ 574 02ae 81000000 		.4byte	0x81
+ 575 02b2 14       		.uleb128 0x14
+ 576 02b3 23020000 		.4byte	.LASF33
+ 577 02b7 05       		.byte	0x5
+ 578 02b8 58       		.byte	0x58
+ 579 02b9 C3020000 		.4byte	0x2c3
+ 580 02bd 15       		.uleb128 0x15
+ 581 02be 76000000 		.4byte	0x76
+ 582 02c2 00       		.byte	0
+ 583 02c3 14       		.uleb128 0x14
+ 584 02c4 04030000 		.4byte	.LASF34
+ 585 02c8 05       		.byte	0x5
+ 586 02c9 57       		.byte	0x57
+ 587 02ca D4020000 		.4byte	0x2d4
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 15
+
+
+ 588 02ce 15       		.uleb128 0x15
+ 589 02cf 81000000 		.4byte	0x81
+ 590 02d3 00       		.byte	0
+ 591 02d4 13       		.uleb128 0x13
+ 592 02d5 A2020000 		.4byte	.LASF36
+ 593 02d9 04       		.byte	0x4
+ 594 02da 8501     		.2byte	0x185
+ 595 02dc 81000000 		.4byte	0x81
+ 596 02e0 16       		.uleb128 0x16
+ 597 02e1 B1010000 		.4byte	.LASF40
+ 598 02e5 04       		.byte	0x4
+ 599 02e6 8D01     		.2byte	0x18d
+ 600 02e8 15       		.uleb128 0x15
+ 601 02e9 7D020000 		.4byte	0x27d
+ 602 02ed 15       		.uleb128 0x15
+ 603 02ee 81000000 		.4byte	0x81
+ 604 02f2 00       		.byte	0
+ 605 02f3 00       		.byte	0
+ 606              		.section	.debug_abbrev,"",%progbits
+ 607              	.Ldebug_abbrev0:
+ 608 0000 01       		.uleb128 0x1
+ 609 0001 11       		.uleb128 0x11
+ 610 0002 01       		.byte	0x1
+ 611 0003 25       		.uleb128 0x25
+ 612 0004 0E       		.uleb128 0xe
+ 613 0005 13       		.uleb128 0x13
+ 614 0006 0B       		.uleb128 0xb
+ 615 0007 03       		.uleb128 0x3
+ 616 0008 0E       		.uleb128 0xe
+ 617 0009 1B       		.uleb128 0x1b
+ 618 000a 0E       		.uleb128 0xe
+ 619 000b 55       		.uleb128 0x55
+ 620 000c 17       		.uleb128 0x17
+ 621 000d 11       		.uleb128 0x11
+ 622 000e 01       		.uleb128 0x1
+ 623 000f 10       		.uleb128 0x10
+ 624 0010 17       		.uleb128 0x17
+ 625 0011 00       		.byte	0
+ 626 0012 00       		.byte	0
+ 627 0013 02       		.uleb128 0x2
+ 628 0014 24       		.uleb128 0x24
+ 629 0015 00       		.byte	0
+ 630 0016 0B       		.uleb128 0xb
+ 631 0017 0B       		.uleb128 0xb
+ 632 0018 3E       		.uleb128 0x3e
+ 633 0019 0B       		.uleb128 0xb
+ 634 001a 03       		.uleb128 0x3
+ 635 001b 0E       		.uleb128 0xe
+ 636 001c 00       		.byte	0
+ 637 001d 00       		.byte	0
+ 638 001e 03       		.uleb128 0x3
+ 639 001f 24       		.uleb128 0x24
+ 640 0020 00       		.byte	0
+ 641 0021 0B       		.uleb128 0xb
+ 642 0022 0B       		.uleb128 0xb
+ 643 0023 3E       		.uleb128 0x3e
+ 644 0024 0B       		.uleb128 0xb
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 16
+
+
+ 645 0025 03       		.uleb128 0x3
+ 646 0026 08       		.uleb128 0x8
+ 647 0027 00       		.byte	0
+ 648 0028 00       		.byte	0
+ 649 0029 04       		.uleb128 0x4
+ 650 002a 16       		.uleb128 0x16
+ 651 002b 00       		.byte	0
+ 652 002c 03       		.uleb128 0x3
+ 653 002d 0E       		.uleb128 0xe
+ 654 002e 3A       		.uleb128 0x3a
+ 655 002f 0B       		.uleb128 0xb
+ 656 0030 3B       		.uleb128 0x3b
+ 657 0031 0B       		.uleb128 0xb
+ 658 0032 49       		.uleb128 0x49
+ 659 0033 13       		.uleb128 0x13
+ 660 0034 00       		.byte	0
+ 661 0035 00       		.byte	0
+ 662 0036 05       		.uleb128 0x5
+ 663 0037 16       		.uleb128 0x16
+ 664 0038 00       		.byte	0
+ 665 0039 03       		.uleb128 0x3
+ 666 003a 0E       		.uleb128 0xe
+ 667 003b 3A       		.uleb128 0x3a
+ 668 003c 0B       		.uleb128 0xb
+ 669 003d 3B       		.uleb128 0x3b
+ 670 003e 05       		.uleb128 0x5
+ 671 003f 49       		.uleb128 0x49
+ 672 0040 13       		.uleb128 0x13
+ 673 0041 00       		.byte	0
+ 674 0042 00       		.byte	0
+ 675 0043 06       		.uleb128 0x6
+ 676 0044 0F       		.uleb128 0xf
+ 677 0045 00       		.byte	0
+ 678 0046 0B       		.uleb128 0xb
+ 679 0047 0B       		.uleb128 0xb
+ 680 0048 49       		.uleb128 0x49
+ 681 0049 13       		.uleb128 0x13
+ 682 004a 00       		.byte	0
+ 683 004b 00       		.byte	0
+ 684 004c 07       		.uleb128 0x7
+ 685 004d 2E       		.uleb128 0x2e
+ 686 004e 01       		.byte	0x1
+ 687 004f 3F       		.uleb128 0x3f
+ 688 0050 19       		.uleb128 0x19
+ 689 0051 03       		.uleb128 0x3
+ 690 0052 0E       		.uleb128 0xe
+ 691 0053 3A       		.uleb128 0x3a
+ 692 0054 0B       		.uleb128 0xb
+ 693 0055 3B       		.uleb128 0x3b
+ 694 0056 0B       		.uleb128 0xb
+ 695 0057 27       		.uleb128 0x27
+ 696 0058 19       		.uleb128 0x19
+ 697 0059 11       		.uleb128 0x11
+ 698 005a 01       		.uleb128 0x1
+ 699 005b 12       		.uleb128 0x12
+ 700 005c 06       		.uleb128 0x6
+ 701 005d 40       		.uleb128 0x40
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 17
+
+
+ 702 005e 18       		.uleb128 0x18
+ 703 005f 9742     		.uleb128 0x2117
+ 704 0061 19       		.uleb128 0x19
+ 705 0062 01       		.uleb128 0x1
+ 706 0063 13       		.uleb128 0x13
+ 707 0064 00       		.byte	0
+ 708 0065 00       		.byte	0
+ 709 0066 08       		.uleb128 0x8
+ 710 0067 898201   		.uleb128 0x4109
+ 711 006a 00       		.byte	0
+ 712 006b 11       		.uleb128 0x11
+ 713 006c 01       		.uleb128 0x1
+ 714 006d 31       		.uleb128 0x31
+ 715 006e 13       		.uleb128 0x13
+ 716 006f 00       		.byte	0
+ 717 0070 00       		.byte	0
+ 718 0071 09       		.uleb128 0x9
+ 719 0072 2E       		.uleb128 0x2e
+ 720 0073 01       		.byte	0x1
+ 721 0074 3F       		.uleb128 0x3f
+ 722 0075 19       		.uleb128 0x19
+ 723 0076 03       		.uleb128 0x3
+ 724 0077 0E       		.uleb128 0xe
+ 725 0078 3A       		.uleb128 0x3a
+ 726 0079 0B       		.uleb128 0xb
+ 727 007a 3B       		.uleb128 0x3b
+ 728 007b 0B       		.uleb128 0xb
+ 729 007c 27       		.uleb128 0x27
+ 730 007d 19       		.uleb128 0x19
+ 731 007e 49       		.uleb128 0x49
+ 732 007f 13       		.uleb128 0x13
+ 733 0080 11       		.uleb128 0x11
+ 734 0081 01       		.uleb128 0x1
+ 735 0082 12       		.uleb128 0x12
+ 736 0083 06       		.uleb128 0x6
+ 737 0084 40       		.uleb128 0x40
+ 738 0085 18       		.uleb128 0x18
+ 739 0086 9742     		.uleb128 0x2117
+ 740 0088 19       		.uleb128 0x19
+ 741 0089 01       		.uleb128 0x1
+ 742 008a 13       		.uleb128 0x13
+ 743 008b 00       		.byte	0
+ 744 008c 00       		.byte	0
+ 745 008d 0A       		.uleb128 0xa
+ 746 008e 05       		.uleb128 0x5
+ 747 008f 00       		.byte	0
+ 748 0090 03       		.uleb128 0x3
+ 749 0091 0E       		.uleb128 0xe
+ 750 0092 3A       		.uleb128 0x3a
+ 751 0093 0B       		.uleb128 0xb
+ 752 0094 3B       		.uleb128 0x3b
+ 753 0095 0B       		.uleb128 0xb
+ 754 0096 49       		.uleb128 0x49
+ 755 0097 13       		.uleb128 0x13
+ 756 0098 02       		.uleb128 0x2
+ 757 0099 17       		.uleb128 0x17
+ 758 009a 00       		.byte	0
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 18
+
+
+ 759 009b 00       		.byte	0
+ 760 009c 0B       		.uleb128 0xb
+ 761 009d 34       		.uleb128 0x34
+ 762 009e 00       		.byte	0
+ 763 009f 03       		.uleb128 0x3
+ 764 00a0 0E       		.uleb128 0xe
+ 765 00a1 3A       		.uleb128 0x3a
+ 766 00a2 0B       		.uleb128 0xb
+ 767 00a3 3B       		.uleb128 0x3b
+ 768 00a4 0B       		.uleb128 0xb
+ 769 00a5 49       		.uleb128 0x49
+ 770 00a6 13       		.uleb128 0x13
+ 771 00a7 02       		.uleb128 0x2
+ 772 00a8 17       		.uleb128 0x17
+ 773 00a9 00       		.byte	0
+ 774 00aa 00       		.byte	0
+ 775 00ab 0C       		.uleb128 0xc
+ 776 00ac 34       		.uleb128 0x34
+ 777 00ad 00       		.byte	0
+ 778 00ae 03       		.uleb128 0x3
+ 779 00af 08       		.uleb128 0x8
+ 780 00b0 3A       		.uleb128 0x3a
+ 781 00b1 0B       		.uleb128 0xb
+ 782 00b2 3B       		.uleb128 0x3b
+ 783 00b3 0B       		.uleb128 0xb
+ 784 00b4 49       		.uleb128 0x49
+ 785 00b5 13       		.uleb128 0x13
+ 786 00b6 02       		.uleb128 0x2
+ 787 00b7 17       		.uleb128 0x17
+ 788 00b8 00       		.byte	0
+ 789 00b9 00       		.byte	0
+ 790 00ba 0D       		.uleb128 0xd
+ 791 00bb 898201   		.uleb128 0x4109
+ 792 00be 01       		.byte	0x1
+ 793 00bf 11       		.uleb128 0x11
+ 794 00c0 01       		.uleb128 0x1
+ 795 00c1 31       		.uleb128 0x31
+ 796 00c2 13       		.uleb128 0x13
+ 797 00c3 01       		.uleb128 0x1
+ 798 00c4 13       		.uleb128 0x13
+ 799 00c5 00       		.byte	0
+ 800 00c6 00       		.byte	0
+ 801 00c7 0E       		.uleb128 0xe
+ 802 00c8 8A8201   		.uleb128 0x410a
+ 803 00cb 00       		.byte	0
+ 804 00cc 02       		.uleb128 0x2
+ 805 00cd 18       		.uleb128 0x18
+ 806 00ce 9142     		.uleb128 0x2111
+ 807 00d0 18       		.uleb128 0x18
+ 808 00d1 00       		.byte	0
+ 809 00d2 00       		.byte	0
+ 810 00d3 0F       		.uleb128 0xf
+ 811 00d4 898201   		.uleb128 0x4109
+ 812 00d7 01       		.byte	0x1
+ 813 00d8 11       		.uleb128 0x11
+ 814 00d9 01       		.uleb128 0x1
+ 815 00da 31       		.uleb128 0x31
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 19
+
+
+ 816 00db 13       		.uleb128 0x13
+ 817 00dc 00       		.byte	0
+ 818 00dd 00       		.byte	0
+ 819 00de 10       		.uleb128 0x10
+ 820 00df 26       		.uleb128 0x26
+ 821 00e0 00       		.byte	0
+ 822 00e1 49       		.uleb128 0x49
+ 823 00e2 13       		.uleb128 0x13
+ 824 00e3 00       		.byte	0
+ 825 00e4 00       		.byte	0
+ 826 00e5 11       		.uleb128 0x11
+ 827 00e6 2E       		.uleb128 0x2e
+ 828 00e7 00       		.byte	0
+ 829 00e8 3F       		.uleb128 0x3f
+ 830 00e9 19       		.uleb128 0x19
+ 831 00ea 03       		.uleb128 0x3
+ 832 00eb 0E       		.uleb128 0xe
+ 833 00ec 3A       		.uleb128 0x3a
+ 834 00ed 0B       		.uleb128 0xb
+ 835 00ee 3B       		.uleb128 0x3b
+ 836 00ef 0B       		.uleb128 0xb
+ 837 00f0 27       		.uleb128 0x27
+ 838 00f1 19       		.uleb128 0x19
+ 839 00f2 3C       		.uleb128 0x3c
+ 840 00f3 19       		.uleb128 0x19
+ 841 00f4 00       		.byte	0
+ 842 00f5 00       		.byte	0
+ 843 00f6 12       		.uleb128 0x12
+ 844 00f7 2E       		.uleb128 0x2e
+ 845 00f8 00       		.byte	0
+ 846 00f9 3F       		.uleb128 0x3f
+ 847 00fa 19       		.uleb128 0x19
+ 848 00fb 03       		.uleb128 0x3
+ 849 00fc 0E       		.uleb128 0xe
+ 850 00fd 3A       		.uleb128 0x3a
+ 851 00fe 0B       		.uleb128 0xb
+ 852 00ff 3B       		.uleb128 0x3b
+ 853 0100 05       		.uleb128 0x5
+ 854 0101 27       		.uleb128 0x27
+ 855 0102 19       		.uleb128 0x19
+ 856 0103 3C       		.uleb128 0x3c
+ 857 0104 19       		.uleb128 0x19
+ 858 0105 00       		.byte	0
+ 859 0106 00       		.byte	0
+ 860 0107 13       		.uleb128 0x13
+ 861 0108 2E       		.uleb128 0x2e
+ 862 0109 00       		.byte	0
+ 863 010a 3F       		.uleb128 0x3f
+ 864 010b 19       		.uleb128 0x19
+ 865 010c 03       		.uleb128 0x3
+ 866 010d 0E       		.uleb128 0xe
+ 867 010e 3A       		.uleb128 0x3a
+ 868 010f 0B       		.uleb128 0xb
+ 869 0110 3B       		.uleb128 0x3b
+ 870 0111 05       		.uleb128 0x5
+ 871 0112 27       		.uleb128 0x27
+ 872 0113 19       		.uleb128 0x19
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 20
+
+
+ 873 0114 49       		.uleb128 0x49
+ 874 0115 13       		.uleb128 0x13
+ 875 0116 3C       		.uleb128 0x3c
+ 876 0117 19       		.uleb128 0x19
+ 877 0118 00       		.byte	0
+ 878 0119 00       		.byte	0
+ 879 011a 14       		.uleb128 0x14
+ 880 011b 2E       		.uleb128 0x2e
+ 881 011c 01       		.byte	0x1
+ 882 011d 3F       		.uleb128 0x3f
+ 883 011e 19       		.uleb128 0x19
+ 884 011f 03       		.uleb128 0x3
+ 885 0120 0E       		.uleb128 0xe
+ 886 0121 3A       		.uleb128 0x3a
+ 887 0122 0B       		.uleb128 0xb
+ 888 0123 3B       		.uleb128 0x3b
+ 889 0124 0B       		.uleb128 0xb
+ 890 0125 27       		.uleb128 0x27
+ 891 0126 19       		.uleb128 0x19
+ 892 0127 3C       		.uleb128 0x3c
+ 893 0128 19       		.uleb128 0x19
+ 894 0129 01       		.uleb128 0x1
+ 895 012a 13       		.uleb128 0x13
+ 896 012b 00       		.byte	0
+ 897 012c 00       		.byte	0
+ 898 012d 15       		.uleb128 0x15
+ 899 012e 05       		.uleb128 0x5
+ 900 012f 00       		.byte	0
+ 901 0130 49       		.uleb128 0x49
+ 902 0131 13       		.uleb128 0x13
+ 903 0132 00       		.byte	0
+ 904 0133 00       		.byte	0
+ 905 0134 16       		.uleb128 0x16
+ 906 0135 2E       		.uleb128 0x2e
+ 907 0136 01       		.byte	0x1
+ 908 0137 3F       		.uleb128 0x3f
+ 909 0138 19       		.uleb128 0x19
+ 910 0139 03       		.uleb128 0x3
+ 911 013a 0E       		.uleb128 0xe
+ 912 013b 3A       		.uleb128 0x3a
+ 913 013c 0B       		.uleb128 0xb
+ 914 013d 3B       		.uleb128 0x3b
+ 915 013e 05       		.uleb128 0x5
+ 916 013f 27       		.uleb128 0x27
+ 917 0140 19       		.uleb128 0x19
+ 918 0141 3C       		.uleb128 0x3c
+ 919 0142 19       		.uleb128 0x19
+ 920 0143 00       		.byte	0
+ 921 0144 00       		.byte	0
+ 922 0145 00       		.byte	0
+ 923              		.section	.debug_loc,"",%progbits
+ 924              	.Ldebug_loc0:
+ 925              	.LLST0:
+ 926 0000 00000000 		.4byte	.LVL4
+ 927 0004 16000000 		.4byte	.LVL6
+ 928 0008 0100     		.2byte	0x1
+ 929 000a 50       		.byte	0x50
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 21
+
+
+ 930 000b 16000000 		.4byte	.LVL6
+ 931 000f 52000000 		.4byte	.LVL20
+ 932 0013 0100     		.2byte	0x1
+ 933 0015 54       		.byte	0x54
+ 934 0016 52000000 		.4byte	.LVL20
+ 935 001a 64000000 		.4byte	.LFE3
+ 936 001e 0400     		.2byte	0x4
+ 937 0020 F3       		.byte	0xf3
+ 938 0021 01       		.uleb128 0x1
+ 939 0022 50       		.byte	0x50
+ 940 0023 9F       		.byte	0x9f
+ 941 0024 00000000 		.4byte	0
+ 942 0028 00000000 		.4byte	0
+ 943              	.LLST1:
+ 944 002c 00000000 		.4byte	.LVL4
+ 945 0030 16000000 		.4byte	.LVL6
+ 946 0034 0100     		.2byte	0x1
+ 947 0036 51       		.byte	0x51
+ 948 0037 16000000 		.4byte	.LVL6
+ 949 003b 64000000 		.4byte	.LFE3
+ 950 003f 0400     		.2byte	0x4
+ 951 0041 F3       		.byte	0xf3
+ 952 0042 01       		.uleb128 0x1
+ 953 0043 51       		.byte	0x51
+ 954 0044 9F       		.byte	0x9f
+ 955 0045 00000000 		.4byte	0
+ 956 0049 00000000 		.4byte	0
+ 957              	.LLST2:
+ 958 004d 00000000 		.4byte	.LVL4
+ 959 0051 16000000 		.4byte	.LVL6
+ 960 0055 0100     		.2byte	0x1
+ 961 0057 52       		.byte	0x52
+ 962 0058 16000000 		.4byte	.LVL6
+ 963 005c 62000000 		.4byte	.LVL26
+ 964 0060 0100     		.2byte	0x1
+ 965 0062 57       		.byte	0x57
+ 966 0063 62000000 		.4byte	.LVL26
+ 967 0067 64000000 		.4byte	.LFE3
+ 968 006b 0400     		.2byte	0x4
+ 969 006d F3       		.byte	0xf3
+ 970 006e 01       		.uleb128 0x1
+ 971 006f 52       		.byte	0x52
+ 972 0070 9F       		.byte	0x9f
+ 973 0071 00000000 		.4byte	0
+ 974 0075 00000000 		.4byte	0
+ 975              	.LLST3:
+ 976 0079 00000000 		.4byte	.LVL4
+ 977 007d 16000000 		.4byte	.LVL6
+ 978 0081 0100     		.2byte	0x1
+ 979 0083 53       		.byte	0x53
+ 980 0084 16000000 		.4byte	.LVL6
+ 981 0088 64000000 		.4byte	.LFE3
+ 982 008c 0400     		.2byte	0x4
+ 983 008e F3       		.byte	0xf3
+ 984 008f 01       		.uleb128 0x1
+ 985 0090 53       		.byte	0x53
+ 986 0091 9F       		.byte	0x9f
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 22
+
+
+ 987 0092 00000000 		.4byte	0
+ 988 0096 00000000 		.4byte	0
+ 989              	.LLST4:
+ 990 009a 00000000 		.4byte	.LVL4
+ 991 009e 12000000 		.4byte	.LVL5
+ 992 00a2 0200     		.2byte	0x2
+ 993 00a4 31       		.byte	0x31
+ 994 00a5 9F       		.byte	0x9f
+ 995 00a6 12000000 		.4byte	.LVL5
+ 996 00aa 3C000000 		.4byte	.LVL15
+ 997 00ae 0200     		.2byte	0x2
+ 998 00b0 40       		.byte	0x40
+ 999 00b1 9F       		.byte	0x9f
+ 1000 00b2 3C000000 		.4byte	.LVL15
+ 1001 00b6 40000000 		.4byte	.LVL16
+ 1002 00ba 0200     		.2byte	0x2
+ 1003 00bc 30       		.byte	0x30
+ 1004 00bd 9F       		.byte	0x9f
+ 1005 00be 40000000 		.4byte	.LVL16
+ 1006 00c2 50000000 		.4byte	.LVL19
+ 1007 00c6 0200     		.2byte	0x2
+ 1008 00c8 40       		.byte	0x40
+ 1009 00c9 9F       		.byte	0x9f
+ 1010 00ca 50000000 		.4byte	.LVL19
+ 1011 00ce 62000000 		.4byte	.LVL25
+ 1012 00d2 0100     		.2byte	0x1
+ 1013 00d4 55       		.byte	0x55
+ 1014 00d5 62000000 		.4byte	.LVL25
+ 1015 00d9 64000000 		.4byte	.LFE3
+ 1016 00dd 0100     		.2byte	0x1
+ 1017 00df 50       		.byte	0x50
+ 1018 00e0 00000000 		.4byte	0
+ 1019 00e4 00000000 		.4byte	0
+ 1020              	.LLST5:
+ 1021 00e8 16000000 		.4byte	.LVL6
+ 1022 00ec 1E000000 		.4byte	.LVL8
+ 1023 00f0 0200     		.2byte	0x2
+ 1024 00f2 30       		.byte	0x30
+ 1025 00f3 9F       		.byte	0x9f
+ 1026 00f4 24000000 		.4byte	.LVL10
+ 1027 00f8 26000000 		.4byte	.LVL11
+ 1028 00fc 0100     		.2byte	0x1
+ 1029 00fe 50       		.byte	0x50
+ 1030 00ff 26000000 		.4byte	.LVL11
+ 1031 0103 3A000000 		.4byte	.LVL14
+ 1032 0107 0100     		.2byte	0x1
+ 1033 0109 55       		.byte	0x55
+ 1034 010a 3A000000 		.4byte	.LVL14
+ 1035 010e 40000000 		.4byte	.LVL16
+ 1036 0112 0100     		.2byte	0x1
+ 1037 0114 50       		.byte	0x50
+ 1038 0115 40000000 		.4byte	.LVL16
+ 1039 0119 50000000 		.4byte	.LVL19
+ 1040 011d 0200     		.2byte	0x2
+ 1041 011f 30       		.byte	0x30
+ 1042 0120 9F       		.byte	0x9f
+ 1043 0121 50000000 		.4byte	.LVL19
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 23
+
+
+ 1044 0125 52000000 		.4byte	.LVL20
+ 1045 0129 0100     		.2byte	0x1
+ 1046 012b 50       		.byte	0x50
+ 1047 012c 00000000 		.4byte	0
+ 1048 0130 00000000 		.4byte	0
+ 1049              	.LLST6:
+ 1050 0134 16000000 		.4byte	.LVL6
+ 1051 0138 1E000000 		.4byte	.LVL8
+ 1052 013c 0100     		.2byte	0x1
+ 1053 013e 55       		.byte	0x55
+ 1054 013f 40000000 		.4byte	.LVL16
+ 1055 0143 44000000 		.4byte	.LVL17
+ 1056 0147 0100     		.2byte	0x1
+ 1057 0149 55       		.byte	0x55
+ 1058 014a 44000000 		.4byte	.LVL17
+ 1059 014e 48000000 		.4byte	.LVL18
+ 1060 0152 0300     		.2byte	0x3
+ 1061 0154 75       		.byte	0x75
+ 1062 0155 01       		.sleb128 1
+ 1063 0156 9F       		.byte	0x9f
+ 1064 0157 48000000 		.4byte	.LVL18
+ 1065 015b 50000000 		.4byte	.LVL19
+ 1066 015f 0100     		.2byte	0x1
+ 1067 0161 55       		.byte	0x55
+ 1068 0162 00000000 		.4byte	0
+ 1069 0166 00000000 		.4byte	0
+ 1070              	.LLST7:
+ 1071 016a 50000000 		.4byte	.LVL19
+ 1072 016e 52000000 		.4byte	.LVL20
+ 1073 0172 0200     		.2byte	0x2
+ 1074 0174 30       		.byte	0x30
+ 1075 0175 9F       		.byte	0x9f
+ 1076 0176 52000000 		.4byte	.LVL20
+ 1077 017a 5C000000 		.4byte	.LVL22
+ 1078 017e 0700     		.2byte	0x7
+ 1079 0180 74       		.byte	0x74
+ 1080 0181 00       		.sleb128 0
+ 1081 0182 F3       		.byte	0xf3
+ 1082 0183 01       		.uleb128 0x1
+ 1083 0184 50       		.byte	0x50
+ 1084 0185 1C       		.byte	0x1c
+ 1085 0186 9F       		.byte	0x9f
+ 1086 0187 5C000000 		.4byte	.LVL22
+ 1087 018b 5E000000 		.4byte	.LVL23
+ 1088 018f 0900     		.2byte	0x9
+ 1089 0191 74       		.byte	0x74
+ 1090 0192 00       		.sleb128 0
+ 1091 0193 F3       		.byte	0xf3
+ 1092 0194 01       		.uleb128 0x1
+ 1093 0195 50       		.byte	0x50
+ 1094 0196 1C       		.byte	0x1c
+ 1095 0197 23       		.byte	0x23
+ 1096 0198 01       		.uleb128 0x1
+ 1097 0199 9F       		.byte	0x9f
+ 1098 019a 5E000000 		.4byte	.LVL23
+ 1099 019e 60000000 		.4byte	.LVL24
+ 1100 01a2 0700     		.2byte	0x7
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 24
+
+
+ 1101 01a4 74       		.byte	0x74
+ 1102 01a5 00       		.sleb128 0
+ 1103 01a6 F3       		.byte	0xf3
+ 1104 01a7 01       		.uleb128 0x1
+ 1105 01a8 50       		.byte	0x50
+ 1106 01a9 1C       		.byte	0x1c
+ 1107 01aa 9F       		.byte	0x9f
+ 1108 01ab 00000000 		.4byte	0
+ 1109 01af 00000000 		.4byte	0
+ 1110              	.LLST8:
+ 1111 01b3 00000000 		.4byte	.LVL27
+ 1112 01b7 13000000 		.4byte	.LVL29-1
+ 1113 01bb 0100     		.2byte	0x1
+ 1114 01bd 50       		.byte	0x50
+ 1115 01be 13000000 		.4byte	.LVL29-1
+ 1116 01c2 1C000000 		.4byte	.LFE4
+ 1117 01c6 0400     		.2byte	0x4
+ 1118 01c8 F3       		.byte	0xf3
+ 1119 01c9 01       		.uleb128 0x1
+ 1120 01ca 50       		.byte	0x50
+ 1121 01cb 9F       		.byte	0x9f
+ 1122 01cc 00000000 		.4byte	0
+ 1123 01d0 00000000 		.4byte	0
+ 1124              	.LLST9:
+ 1125 01d4 00000000 		.4byte	.LVL27
+ 1126 01d8 13000000 		.4byte	.LVL29-1
+ 1127 01dc 0100     		.2byte	0x1
+ 1128 01de 51       		.byte	0x51
+ 1129 01df 13000000 		.4byte	.LVL29-1
+ 1130 01e3 1C000000 		.4byte	.LFE4
+ 1131 01e7 0400     		.2byte	0x4
+ 1132 01e9 F3       		.byte	0xf3
+ 1133 01ea 01       		.uleb128 0x1
+ 1134 01eb 51       		.byte	0x51
+ 1135 01ec 9F       		.byte	0x9f
+ 1136 01ed 00000000 		.4byte	0
+ 1137 01f1 00000000 		.4byte	0
+ 1138              	.LLST10:
+ 1139 01f5 00000000 		.4byte	.LVL27
+ 1140 01f9 13000000 		.4byte	.LVL29-1
+ 1141 01fd 0100     		.2byte	0x1
+ 1142 01ff 52       		.byte	0x52
+ 1143 0200 13000000 		.4byte	.LVL29-1
+ 1144 0204 1A000000 		.4byte	.LVL32
+ 1145 0208 0100     		.2byte	0x1
+ 1146 020a 55       		.byte	0x55
+ 1147 020b 1A000000 		.4byte	.LVL32
+ 1148 020f 1C000000 		.4byte	.LFE4
+ 1149 0213 0400     		.2byte	0x4
+ 1150 0215 F3       		.byte	0xf3
+ 1151 0216 01       		.uleb128 0x1
+ 1152 0217 52       		.byte	0x52
+ 1153 0218 9F       		.byte	0x9f
+ 1154 0219 00000000 		.4byte	0
+ 1155 021d 00000000 		.4byte	0
+ 1156              	.LLST11:
+ 1157 0221 00000000 		.4byte	.LVL27
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 25
+
+
+ 1158 0225 08000000 		.4byte	.LVL28
+ 1159 0229 0100     		.2byte	0x1
+ 1160 022b 53       		.byte	0x53
+ 1161 022c 08000000 		.4byte	.LVL28
+ 1162 0230 1C000000 		.4byte	.LFE4
+ 1163 0234 0400     		.2byte	0x4
+ 1164 0236 F3       		.byte	0xf3
+ 1165 0237 01       		.uleb128 0x1
+ 1166 0238 53       		.byte	0x53
+ 1167 0239 9F       		.byte	0x9f
+ 1168 023a 00000000 		.4byte	0
+ 1169 023e 00000000 		.4byte	0
+ 1170              	.LLST12:
+ 1171 0242 00000000 		.4byte	.LVL27
+ 1172 0246 16000000 		.4byte	.LVL30
+ 1173 024a 0200     		.2byte	0x2
+ 1174 024c 31       		.byte	0x31
+ 1175 024d 9F       		.byte	0x9f
+ 1176 024e 16000000 		.4byte	.LVL30
+ 1177 0252 18000000 		.4byte	.LVL31
+ 1178 0256 0200     		.2byte	0x2
+ 1179 0258 30       		.byte	0x30
+ 1180 0259 9F       		.byte	0x9f
+ 1181 025a 18000000 		.4byte	.LVL31
+ 1182 025e 1C000000 		.4byte	.LFE4
+ 1183 0262 0100     		.2byte	0x1
+ 1184 0264 53       		.byte	0x53
+ 1185 0265 00000000 		.4byte	0
+ 1186 0269 00000000 		.4byte	0
+ 1187              		.section	.debug_aranges,"",%progbits
+ 1188 0000 3C000000 		.4byte	0x3c
+ 1189 0004 0200     		.2byte	0x2
+ 1190 0006 00000000 		.4byte	.Ldebug_info0
+ 1191 000a 04       		.byte	0x4
+ 1192 000b 00       		.byte	0
+ 1193 000c 0000     		.2byte	0
+ 1194 000e 0000     		.2byte	0
+ 1195 0010 00000000 		.4byte	.LFB0
+ 1196 0014 08000000 		.4byte	.LFE0-.LFB0
+ 1197 0018 00000000 		.4byte	.LFB1
+ 1198 001c 08000000 		.4byte	.LFE1-.LFB1
+ 1199 0020 00000000 		.4byte	.LFB2
+ 1200 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 1201 0028 00000000 		.4byte	.LFB3
+ 1202 002c 64000000 		.4byte	.LFE3-.LFB3
+ 1203 0030 00000000 		.4byte	.LFB4
+ 1204 0034 1C000000 		.4byte	.LFE4-.LFB4
+ 1205 0038 00000000 		.4byte	0
+ 1206 003c 00000000 		.4byte	0
+ 1207              		.section	.debug_ranges,"",%progbits
+ 1208              	.Ldebug_ranges0:
+ 1209 0000 00000000 		.4byte	.LFB0
+ 1210 0004 08000000 		.4byte	.LFE0
+ 1211 0008 00000000 		.4byte	.LFB1
+ 1212 000c 08000000 		.4byte	.LFE1
+ 1213 0010 00000000 		.4byte	.LFB2
+ 1214 0014 0C000000 		.4byte	.LFE2
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 26
+
+
+ 1215 0018 00000000 		.4byte	.LFB3
+ 1216 001c 64000000 		.4byte	.LFE3
+ 1217 0020 00000000 		.4byte	.LFB4
+ 1218 0024 1C000000 		.4byte	.LFE4
+ 1219 0028 00000000 		.4byte	0
+ 1220 002c 00000000 		.4byte	0
+ 1221              		.section	.debug_line,"",%progbits
+ 1222              	.Ldebug_line0:
+ 1223 0000 20010000 		.section	.debug_str,"MS",%progbits,1
+ 1223      02008C00 
+ 1223      00000201 
+ 1223      FB0E0D00 
+ 1223      01010101 
+ 1224              	.LASF26:
+ 1225 0000 74696D65 		.ascii	"timeoutMs\000"
+ 1225      6F75744D 
+ 1225      7300
+ 1226              	.LASF15:
+ 1227 000a 63797374 		.ascii	"cystatus\000"
+ 1227      61747573 
+ 1227      00
+ 1228              	.LASF22:
+ 1229 0013 636F756E 		.ascii	"count\000"
+ 1229      7400
+ 1230              	.LASF3:
+ 1231 0019 73686F72 		.ascii	"short unsigned int\000"
+ 1231      7420756E 
+ 1231      7369676E 
+ 1231      65642069 
+ 1231      6E7400
+ 1232              	.LASF39:
+ 1233 002c 443A5C63 		.ascii	"D:\\customers\\patternagents\\PSoC4_Workshop\\proje"
+ 1233      7573746F 
+ 1233      6D657273 
+ 1233      5C706174 
+ 1233      7465726E 
+ 1234 005b 6374735C 		.ascii	"cts\\LAB_THREE\\UART_Bootloader.cydsn\000"
+ 1234      4C41425F 
+ 1234      54485245 
+ 1234      455C5541 
+ 1234      52545F42 
+ 1235              	.LASF24:
+ 1236 007f 73746174 		.ascii	"status\000"
+ 1236      757300
+ 1237              	.LASF20:
+ 1238 0086 70446174 		.ascii	"pData\000"
+ 1238      6100
+ 1239              	.LASF37:
+ 1240 008c 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1240      4320342E 
+ 1240      382E3420 
+ 1240      32303134 
+ 1240      30353236 
+ 1241 00bf 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 1241      20726576 
+ 1241      6973696F 
+ 1241      6E203231 
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 27
+
+
+ 1241      31333538 
+ 1242 00f2 73202D66 		.ascii	"s -ffunction-sections\000"
+ 1242      66756E63 
+ 1242      74696F6E 
+ 1242      2D736563 
+ 1242      74696F6E 
+ 1243              	.LASF12:
+ 1244 0108 666C6F61 		.ascii	"float\000"
+ 1244      7400
+ 1245              	.LASF21:
+ 1246 010e 73697A65 		.ascii	"size\000"
+ 1246      00
+ 1247              	.LASF19:
+ 1248 0113 55415254 		.ascii	"UART_UartCyBtldrCommReset\000"
+ 1248      5F556172 
+ 1248      74437942 
+ 1248      746C6472 
+ 1248      436F6D6D 
+ 1249              	.LASF5:
+ 1250 012d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1250      20756E73 
+ 1250      69676E65 
+ 1250      6420696E 
+ 1250      7400
+ 1251              	.LASF9:
+ 1252 013f 75696E74 		.ascii	"uint8\000"
+ 1252      3800
+ 1253              	.LASF29:
+ 1254 0145 55415254 		.ascii	"UART_Start\000"
+ 1254      5F537461 
+ 1254      727400
+ 1255              	.LASF25:
+ 1256 0150 62797465 		.ascii	"byteCount\000"
+ 1256      436F756E 
+ 1256      7400
+ 1257              	.LASF1:
+ 1258 015a 756E7369 		.ascii	"unsigned char\000"
+ 1258      676E6564 
+ 1258      20636861 
+ 1258      7200
+ 1259              	.LASF17:
+ 1260 0168 55415254 		.ascii	"UART_UartCyBtldrCommStart\000"
+ 1260      5F556172 
+ 1260      74437942 
+ 1260      746C6472 
+ 1260      436F6D6D 
+ 1261              	.LASF13:
+ 1262 0182 646F7562 		.ascii	"double\000"
+ 1262      6C6500
+ 1263              	.LASF10:
+ 1264 0189 75696E74 		.ascii	"uint16\000"
+ 1264      313600
+ 1265              	.LASF11:
+ 1266 0190 75696E74 		.ascii	"uint32\000"
+ 1266      333200
+ 1267              	.LASF32:
+ 1268 0197 55415254 		.ascii	"UART_SpiUartClearTxBuffer\000"
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 28
+
+
+ 1268      5F537069 
+ 1268      55617274 
+ 1268      436C6561 
+ 1268      72547842 
+ 1269              	.LASF40:
+ 1270 01b1 55415254 		.ascii	"UART_SpiUartPutArray\000"
+ 1270      5F537069 
+ 1270      55617274 
+ 1270      50757441 
+ 1270      72726179 
+ 1271              	.LASF8:
+ 1272 01c6 756E7369 		.ascii	"unsigned int\000"
+ 1272      676E6564 
+ 1272      20696E74 
+ 1272      00
+ 1273              	.LASF7:
+ 1274 01d3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1274      206C6F6E 
+ 1274      6720756E 
+ 1274      7369676E 
+ 1274      65642069 
+ 1275              	.LASF28:
+ 1276 01ea 55415254 		.ascii	"UART_UartCyBtldrCommWrite\000"
+ 1276      5F556172 
+ 1276      74437942 
+ 1276      746C6472 
+ 1276      436F6D6D 
+ 1277              	.LASF23:
+ 1278 0204 74696D65 		.ascii	"timeOut\000"
+ 1278      4F757400 
+ 1279              	.LASF16:
+ 1280 020c 73697A65 		.ascii	"sizetype\000"
+ 1280      74797065 
+ 1280      00
+ 1281              	.LASF6:
+ 1282 0215 6C6F6E67 		.ascii	"long long int\000"
+ 1282      206C6F6E 
+ 1282      6720696E 
+ 1282      7400
+ 1283              	.LASF33:
+ 1284 0223 43794465 		.ascii	"CyDelayUs\000"
+ 1284      6C617955 
+ 1284      7300
+ 1285              	.LASF14:
+ 1286 022d 63686172 		.ascii	"char\000"
+ 1286      00
+ 1287              	.LASF38:
+ 1288 0232 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\UART_UART_BOOT.c\000"
+ 1288      6E657261 
+ 1288      7465645F 
+ 1288      536F7572 
+ 1288      63655C50 
+ 1289              	.LASF2:
+ 1290 025c 73686F72 		.ascii	"short int\000"
+ 1290      7420696E 
+ 1290      7400
+ 1291              	.LASF30:
+ARM GAS  C:\Users\moxon\AppData\Local\Temp\cca1LJbC.s 			page 29
+
+
+ 1292 0266 55415254 		.ascii	"UART_Stop\000"
+ 1292      5F53746F 
+ 1292      7000
+ 1293              	.LASF27:
+ 1294 0270 55415254 		.ascii	"UART_UartCyBtldrCommRead\000"
+ 1294      5F556172 
+ 1294      74437942 
+ 1294      746C6472 
+ 1294      436F6D6D 
+ 1295              	.LASF18:
+ 1296 0289 55415254 		.ascii	"UART_UartCyBtldrCommStop\000"
+ 1296      5F556172 
+ 1296      74437942 
+ 1296      746C6472 
+ 1296      436F6D6D 
+ 1297              	.LASF36:
+ 1298 02a2 55415254 		.ascii	"UART_SpiUartReadRxData\000"
+ 1298      5F537069 
+ 1298      55617274 
+ 1298      52656164 
+ 1298      52784461 
+ 1299              	.LASF4:
+ 1300 02b9 6C6F6E67 		.ascii	"long int\000"
+ 1300      20696E74 
+ 1300      00
+ 1301              	.LASF31:
+ 1302 02c2 55415254 		.ascii	"UART_SpiUartClearRxBuffer\000"
+ 1302      5F537069 
+ 1302      55617274 
+ 1302      436C6561 
+ 1302      72527842 
+ 1303              	.LASF0:
+ 1304 02dc 7369676E 		.ascii	"signed char\000"
+ 1304      65642063 
+ 1304      68617200 
+ 1305              	.LASF35:
+ 1306 02e8 55415254 		.ascii	"UART_SpiUartGetRxBufferSize\000"
+ 1306      5F537069 
+ 1306      55617274 
+ 1306      47657452 
+ 1306      78427566 
+ 1307              	.LASF34:
+ 1308 0304 43794465 		.ascii	"CyDelay\000"
+ 1308      6C617900 
+ 1309              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
